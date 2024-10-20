@@ -62,5 +62,17 @@ document.getElementById("email-form").addEventListener("submit", function(e) {
     } else {
         alert("Please enter a valid email.");
     }
+    
+});
+
+document.querySelector(".signup-form h2").addEventListener("click", function() {
+    // Create a new page
+    const newWindow = window.open("", "_self"); // Open a new page in the same tab
+
+    // Set the background color of the new page to red
+    newWindow.document.body.style.backgroundColor = "red";
+
+    // Add some content to the new page (optional)
+    newWindow.document.body.innerHTML = "<h1>Welcome to the New Page!</h1><p>Thank you for joining us!</p>";
 });
 
