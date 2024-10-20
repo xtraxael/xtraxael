@@ -63,6 +63,90 @@ document.getElementById("email-form").addEventListener("submit", function(e) {
         alert("Please enter a valid email.");
     }
 
+document.addEventListener("DOMContentLoaded", function () {
+    // Create an audio element and set its properties
+    const audio = new Audio('back1.mp3'); // Replace with the correct path to back1.mp3
+    audio.loop = true; // Loop the audio
+    audio.volume = 0.0; // Start with an imperceptible volume
+    audio.play(); // Play the audio
+
+    // Get reference to the logo
+    const logo = document.getElementById("logo");
+
+    // Function to calculate the distance between two points
+    function calculateDistance(x1, y1, x2, y2) {
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    }
+
+    // Add mousemove event listener to track the cursor
+    document.addEventListener("mousemove", function (event) {
+        // Get the cursor's position
+        const cursorX = event.clientX;
+        const cursorY = event.clientY;
+
+        // Get the logo's position and size
+        const logoRect = logo.getBoundingClientRect();
+        const logoX = logoRect.left + logoRect.width / 2; // Center X of the logo
+        const logoY = logoRect.top + logoRect.height / 2; // Center Y of the logo
+
+        // Calculate the distance from the cursor to the center of the logo
+        const distance = calculateDistance(cursorX, cursorY, logoX, logoY);
+
+        // Define the maximum distance at which the volume starts to increase
+        const maxDistance = 500; // Adjust as needed
+
+        // Calculate the volume based on distance
+        let volume = 1 - distance / maxDistance;
+        volume = Math.max(0, Math.min(volume, 1)); // Clamp the value between 0 and 1
+
+        // Set the audio volume
+        audio.volume = volume;
+    });
+});
+
+
+/* audio w/distance from logo*/
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Create an audio element and set its properties
+    const audio = new Audio('back1.mp3'); // Replace with the correct path to back1.mp3
+    audio.loop = true; // Loop the audio
+    audio.volume = 0.0; // Start with an imperceptible volume
+    audio.play(); // Play the audio
+
+    // Get reference to the logo
+    const logo = document.getElementById("logo");
+
+    // Function to calculate the distance between two points
+    function calculateDistance(x1, y1, x2, y2) {
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    }
+
+    // Add mousemove event listener to track the cursor
+    document.addEventListener("mousemove", function (event) {
+        // Get the cursor's position
+        const cursorX = event.clientX;
+        const cursorY = event.clientY;
+
+        // Get the logo's position and size
+        const logoRect = logo.getBoundingClientRect();
+        const logoX = logoRect.left + logoRect.width / 2; // Center X of the logo
+        const logoY = logoRect.top + logoRect.height / 2; // Center Y of the logo
+
+        // Calculate the distance from the cursor to the center of the logo
+        const distance = calculateDistance(cursorX, cursorY, logoX, logoY);
+
+        // Define the maximum distance at which the volume starts to increase
+        const maxDistance = 500; // Adjust as needed
+
+        // Calculate the volume based on distance
+        let volume = 1 - distance / maxDistance;
+        volume = Math.max(0, Math.min(volume, 1)); // Clamp the value between 0 and 1
+
+        // Set the audio volume
+        audio.volume = volume;
+    });
+});
 
 
 /*New Page*/
