@@ -62,6 +62,10 @@ document.getElementById("email-form").addEventListener("submit", function(e) {
     } else {
         alert("Please enter a valid email.");
     }
+
+
+
+/*New Page*/
     
 });
 
@@ -74,5 +78,19 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
 
     // Add some content to the new page (optional)
     newWindow.document.body.innerHTML = "<h1>Welcome to the New Page!</h1><p>Thank you for joining us!</p>";
+
+    // Create an image element for Cntrl.jpg
+    const img = newWindow.document.createElement("img");
+    img.src = "Cntrl.jpg"; // Replace with the correct path to Cntrl.jpg
+    img.alt = "Cntrl Image";
+
+    // Style the image to position it center-left
+    img.style.position = "absolute";
+    img.style.left = "0";
+    img.style.top = "50%";
+    img.style.transform = "translateY(-50%)";
+
+    // Append the image to the body of the new page
+    newWindow.document.body.appendChild(img);
 });
 
