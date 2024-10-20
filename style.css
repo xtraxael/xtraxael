@@ -157,8 +157,8 @@ h1, p, img {
     font-size: 18px; /* Set the font size for the placeholder */
 }
 
-/* Ensure everything is above the background
+/* Ensure everything is above the background */
 * {
     z-index: 9999;
 }
-*/
+
