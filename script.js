@@ -84,7 +84,7 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
     img.src = "Cntrl.jpg"; // Replace with the correct path to Cntrl.jpg
     img.alt = "Cntrl Image";
 
-    // Style the image to position it center-left
+    // Style the image to position it center-left and scale it appropriately
     img.style.position = "absolute";
     img.style.left = "0";
     img.style.top = "50%";
