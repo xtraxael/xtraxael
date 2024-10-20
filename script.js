@@ -95,5 +95,29 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
 
     // Append the image to the body of the new page
     newWindow.document.body.appendChild(img);
+    
+    // Create a play button
+    const playButton = newWindow.document.createElement("button");
+    playButton.textContent = "Play";
+    playButton.style.position = "absolute";
+    playButton.style.top = "50%";
+    playButton.style.left = "50%";
+    playButton.style.transform = "translate(-50%, -50%)";
+    playButton.style.padding = "15px 30px";
+    playButton.style.fontSize = "20px";
+    playButton.style.zIndex = "10001"; // Ensure it's above all other elements
+
+    // Append the play button to the body of the new page
+    newWindow.document.body.appendChild(playButton);
+
+    // Create an audio element for back1.mp3
+    const audio = newWindow.document.createElement("audio");
+    audio.src = "back1.mp3"; // Replace with the correct path to back1.mp3
+    newWindow.document.body.appendChild(audio);
+
+    // Add an event listener to the play button to play the audio
+    playButton.addEventListener("click", function() {
+        audio.play();
+    });
 });
 
