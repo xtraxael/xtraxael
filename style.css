@@ -21,7 +21,13 @@ body::before {
     bottom: 0;
     background: url('Bk.jpeg') no-repeat center center;
     background-size: cover;
-    z-index: 0; /* Ensure it's below all interactive content */
+    z-index: -1; /* Ensure it's below all interactive content */
+}
+
+/* Style for the new page content (JavaScript generated) */
+h1, p, img {
+    position: relative;
+    z-index: 10000; /* Ensure these are always above other elements */
 }
 
 /* Menu styles */
@@ -151,7 +157,8 @@ body::before {
     font-size: 18px; /* Set the font size for the placeholder */
 }
 
-/* Ensure everything is above the background */
+/* Ensure everything is above the background
 * {
     z-index: 9999;
 }
+*/
