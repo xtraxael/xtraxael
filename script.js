@@ -112,7 +112,7 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
 
     // Create an audio element for back1.mp3
     const audio = newWindow.document.createElement("audio");
-    audio.src = "back1.mp3"; // Replace with the correct path to back1.mp3
+    audio.src = "Cntrl.mp3"; // Replace with the correct path to back1.mp3
     newWindow.document.body.appendChild(audio);
 
     // Add an event listener to the play button to play the audio
