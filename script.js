@@ -89,6 +89,9 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
     img.style.left = "0";
     img.style.top = "50%";
     img.style.transform = "translateY(-50%)";
+    img.style.width = "300px"; // Set a fixed width for better scaling
+    img.style.height = "auto"; // Maintain aspect ratio
+    img.style.zIndex = "10000"; // Ensure it's above all other elements
 
     // Append the image to the body of the new page
     newWindow.document.body.appendChild(img);
