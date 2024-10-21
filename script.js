@@ -62,73 +62,22 @@ document.getElementById("email-form").addEventListener("submit", function(e) {
     } else {
         alert("Please enter a valid email.");
     }
-    
 
-    
-
-/* audio w/distance from logo*/
-
-document.addEventListener("DOMContentLoaded", function () {
-    // Create an audio element for back1.mp3
-    const audio = new Audio('back1.mp3'); // Replace with the correct path to back1.mp3
-    audio.loop = true; // Loop the audio
-    audio.volume = 0.0; // Start with an imperceptible volume
-
-    // Play the audio only after a user interaction to bypass browser restrictions
-    document.body.addEventListener("click", function() {
-        audio.play();
-    }, { once: true }); // Play only once after the first user click
-
-    // Get reference to the logo
-    const logo = document.getElementById("logo");
-
-    // Function to calculate the distance between two points
-    function calculateDistance(x1, y1, x2, y2) {
-        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-    }
-
-    // Add mousemove event listener to track the cursor
-    document.addEventListener("mousemove", function (event) {
-        // Get the cursor's position
-        const cursorX = event.clientX;
-        const cursorY = event.clientY;
-
-        // Get the logo's position and size
-        if (logo) {
-            const logoRect = logo.getBoundingClientRect();
-            const logoX = logoRect.left + logoRect.width / 2; // Center X of the logo
-            const logoY = logoRect.top + logoRect.height / 2; // Center Y of the logo
-
-            // Calculate the distance from the cursor to the center of the logo
-            const distance = calculateDistance(cursorX, cursorY, logoX, logoY);
-
-            // Define the maximum distance at which the volume starts to increase
-            const maxDistance = 500; // Adjust as needed
-
-            // Calculate the volume based on distance
-            let volume = 1 - distance / maxDistance;
-            volume = Math.max(0, Math.min(volume, 1)); // Clamp the value between 0 and 1
-
-            // Set the audio volume
-            audio.volume = volume;
-        }
-    });
-});
 
 
 /*New Page*/
-    document.querySelector(".signup-form h2").addEventListener("click", function() {
+    
+});
+
+document.querySelector(".signup-form h2").addEventListener("click", function() {
     // Create a new page
     const newWindow = window.open("", "_self"); // Open a new page in the same tab
 
     // Set the background color of the new page to red
     newWindow.document.body.style.backgroundColor = "red";
 
-    // Add some content to the new page
-    newWindow.document.body.innerHTML = `
-        <h1>Welcome to the New Page!</h1>
-        <p>Thank you for joining us!</p>
-    `;
+    // Add some content to the new page (optional)
+    newWindow.document.body.innerHTML = "<h1>Welcome to the New Page!</h1><p>Thank you for joining us!</p>";
 
     // Create an image element for Cntrl.jpg
     const img = newWindow.document.createElement("img");
@@ -146,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Append the image to the body of the new page
     newWindow.document.body.appendChild(img);
-
+    
     // Create a play button
     const playButton = newWindow.document.createElement("button");
     playButton.textContent = "Play";
@@ -161,14 +110,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // Append the play button to the body of the new page
     newWindow.document.body.appendChild(playButton);
 
-    // Create an audio element for Cntrl.mp3
-    const cntrlAudio = newWindow.document.createElement("audio");
-    cntrlAudio.src = "Cntrl.mp3"; // Replace with the correct path to Cntrl.mp3
-    newWindow.document.body.appendChild(cntrlAudio);
+    // Create an audio element for back1.mp3
+    const audio = newWindow.document.createElement("audio");
+    audio.src = "Cntrl.mp3"; // Replace with the correct path to back1.mp3
+    newWindow.document.body.appendChild(audio);
 
     // Add an event listener to the play button to play the audio
     playButton.addEventListener("click", function() {
-        cntrlAudio.play();
+        audio.play();
     });
 });
-
