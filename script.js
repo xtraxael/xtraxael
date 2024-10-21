@@ -122,13 +122,14 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
     audio.src = "Cntrl.mp3"; // Replace with the correct path to back1.mp3
     document.body.appendChild(audio);
 
-   // Add an event listener to the play button to play the audio
+    // Add an event listener to the play button to play the audio
     playButton.addEventListener("click", function () {
         audio.play().then(() => {
             console.log("Playback started successfully.");
         }).catch((error) => {
             console.error("Playback failed:", error);
             alert("Playback could not be started. Please ensure the page has been interacted with.");
-        });
+         });
     });
+});    
 
