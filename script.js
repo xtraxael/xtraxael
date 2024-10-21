@@ -148,11 +148,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (backAudio.paused) {
             backAudio.play().catch((error) => {
                 console.error("Audio playback failed:", error);
+                // New: Update volume of back1.mp3 based on the mouse distance
+        if (typeof backAudio !== 'undefined') {
+            backAudio.volume = Math.max(0, Math.min(1, 1 - (distance / maxDistance))); // Calculate volume based on distance, clamped between 0 and 1
+        
             });
         }
     }, { once: true }); // Ensure audio plays only once after the first interaction
-        
-        });
-    });
 });    
 
