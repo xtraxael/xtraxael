@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
     backAudio = new Audio('audio/back1.mp3'); // Initialize backAudio here
     backAudio.loop = true; // Loop the audio
     backAudio.volume = 0.0; // Start with imperceptible volume
-
+});
     // Play the audio only after a user interaction to bypass browser autoplay restrictions
     document.body.addEventListener("click", function () {
         if (backAudio.paused) {
