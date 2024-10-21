@@ -1,5 +1,6 @@
-// Add this JavaScript code for handling the "Join" text and form visibility
+/* jshint esversion: 6 */
 
+// Add this JavaScript code for handling the "Join" text and form visibility
 document.addEventListener('DOMContentLoaded', function() {
     const joinText = document.querySelector('.signup-form h2');
     const formContainer = document.querySelector('.signup-form form');
@@ -99,7 +100,6 @@ let backAudio; // Declare backAudio in a wider scope
 
 document.addEventListener('DOMContentLoaded', function () {
     // Create an audio element for back1.mp3
-   
     
     document.addEventListener('DOMContentLoaded', function () {
         backAudio = new Audio('audio/back1.mp3'); // Initialize backAudio here
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     }, { once: true }); // Ensure audio plays only once after the first interaction
-
+});
     // Add mousemove event listener to handle both glow effect and volume adjustment
     document.addEventListener('mousemove', function (e) {
         const logo = document.getElementById('logo');
