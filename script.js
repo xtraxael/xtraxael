@@ -136,7 +136,7 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
 
 // DYNAMIC VOLUME CONTROL HOMEPAGE // ------------------------------------------------------
 
-    // Add this JavaScript code for handling mousemove and dynamic volume control of back1.mp3
+// Add this JavaScript code for handling mousemove and dynamic volume control of back1.mp3
 document.addEventListener('DOMContentLoaded', function () {
     // Create an audio element for back1.mp3
     const backAudio = new Audio('back1.mp3'); // Make sure the path to back1.mp3 is correct
@@ -144,16 +144,36 @@ document.addEventListener('DOMContentLoaded', function () {
     backAudio.volume = 0.0; // Start with imperceptible volume
 
     // Play the audio only after a user interaction to bypass browser autoplay restrictions
-    document.body.addEventListener("mousemove", function() {
+    document.body.addEventListener("mousemove", function () {
         if (backAudio.paused) {
             backAudio.play().catch((error) => {
                 console.error("Audio playback failed:", error);
-                // New: Update volume of back1.mp3 based on the mouse distance
-        if (typeof backAudio !== 'undefined') {
-            backAudio.volume = Math.max(0, Math.min(1, 1 - (distance / maxDistance))); // Calculate volume based on distance, clamped between 0 and 1
-        
             });
         }
     }, { once: true }); // Ensure audio plays only once after the first interaction
-});    
+
+    // Add mousemove event listener to adjust volume
+    document.addEventListener('mousemove', function (e) {
+        const logo = document.getElementById('logo');
+
+        // Add this null check to prevent errors when the logo is not present
+        if (!logo) {
+            return;  // Stop execution if logo is not found
+        }
+
+        const rect = logo.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        // Calculate distance from the center of the logo to the mouse cursor
+        const distance = Math.sqrt(Math.pow(centerX - e.clientX, 2) + Math.pow(centerY - e.clientY, 2));
+
+        // Define the maximum effect distance and maximum values for effects
+        const maxDistance = 2000; // Maximum distance at which the effects are visible
+
+        // Update volume of back1.mp3 based on the mouse distance
+        backAudio.volume = Math.max(0, Math.min(1, 1 - (distance / maxDistance))); // Calculate volume based on distance, clamped between 0 and 1
+    });
+});
+
 
