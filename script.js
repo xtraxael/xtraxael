@@ -102,54 +102,58 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
 
 // CONSOLIDATED MOUSE MOVE // ------------------------------------------------------
 
+// Declare backAudio in a wider scope
+let backAudio = new Audio('back1.mp3'); // Initialize backAudio here
+backAudio.loop = true; // Loop the audio
+backAudio.volume = 0.0; // Start with imperceptible volume
 
-    // Play the audio only after a user interaction to bypass browser autoplay restrictions
-    document.body.addEventListener("click", function () {
-        if (backAudio.paused) {
-            backAudio.play().catch((error) => {
-                console.error("Audio playback failed:", error);
-            });
-        }
-    }, { once: true }); // Ensure audio plays only once after the first interaction
+// Play the audio only after a user interaction to bypass browser autoplay restrictions
+document.body.addEventListener("click", function () {
+    if (backAudio.paused) {
+        backAudio.play().catch((error) => {
+            console.error("Audio playback failed:", error);
+        });
+    }
+}, { once: true }); // Ensure audio plays only once after the first interaction
 
-    // Add mousemove event listener to handle both glow effect and volume adjustment
-    document.addEventListener('mousemove', function (e) {
-        if (!backAudio) {
-            return; // Ensure backAudio has been initialized
-        }
+// Add mousemove event listener to handle both glow effect and volume adjustment
+document.addEventListener('mousemove', function (e) {
+    if (!backAudio) {
+        return; // Ensure backAudio has been initialized
+    }
 
-        const logo = document.getElementById('logo');
+    const logo = document.getElementById('logo');
 
-        // Add this null check to prevent errors when the logo is not present
-        if (!logo) {
-            return;  // Stop execution if logo is not found
-        }
+    // Add this null check to prevent errors when the logo is not present
+    if (!logo) {
+        return;  // Stop execution if logo is not found
+    }
 
-        const rect = logo.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
+    const rect = logo.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
 
-        // Calculate distance from the center of the logo to the mouse cursor
-        const distance = Math.sqrt(Math.pow(centerX - e.clientX, 2) + Math.pow(centerY - e.clientY, 2));
+    // Calculate distance from the center of the logo to the mouse cursor
+    const distance = Math.sqrt(Math.pow(centerX - e.clientX, 2) + Math.pow(centerY - e.clientY, 2));
 
-        // Define the maximum effect distance and maximum values for effects
-        const maxDistance = 2000; // Maximum distance at which the effects are visible
-        const maxGlowSize = 150; // Maximum size of the glow in pixels
-        const maxBlur = 10; // Maximum blur amount in pixels
+    // Define the maximum effect distance and maximum values for effects
+    const maxDistance = 2000; // Maximum distance at which the effects are visible
+    const maxGlowSize = 150; // Maximum size of the glow in pixels
+    const maxBlur = 10; // Maximum blur amount in pixels
 
-        // Calculate intensity based on distance
-        const intensity = Math.max(0, 1 - (distance / maxDistance));
+    // Calculate intensity based on distance
+    const intensity = Math.max(0, 1 - (distance / maxDistance));
 
-        // Calculate glow size and opacity
-        const glowSize = maxGlowSize * intensity;
-        const glowOpacity = Math.max(0, intensity);
+    // Calculate glow size and opacity
+    const glowSize = maxGlowSize * intensity;
+    const glowOpacity = Math.max(0, intensity);
 
-        // Calculate blur amount
-        const blurAmount = maxBlur * (1 - intensity);
+    // Calculate blur amount
+    const blurAmount = maxBlur * (1 - intensity);
 
-        // Update the logo's style based on the calculated intensity and blur
-        logo.style.filter = `drop-shadow(0 0 ${glowSize}px rgba(255, 255, 255, ${glowOpacity})) blur(${blurAmount}px)`;
+    // Update the logo's style based on the calculated intensity and blur
+    logo.style.filter = `drop-shadow(0 0 ${glowSize}px rgba(255, 255, 255, ${glowOpacity})) blur(${blurAmount}px)`;
 
-        // Update volume of back1.mp3 based on the mouse distance
-        backAudio.volume = Math.max(0, Math.min(1, intensity)); // Calculate volume based on intensity, clamped between 0 and 1
-    });
+    // Update volume of back1.mp3 based on the mouse distance
+    backAudio.volume = Math.max(0, Math.min(1, intensity)); // Calculate volume based on intensity, clamped between 0 and 1
+});
