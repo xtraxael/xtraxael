@@ -155,5 +155,4 @@ document.addEventListener('mousemove', function (e) {
     // Increase the max volume by multiplying the intensity by a factor, then clamp it to 1
     const volumeMultiplier = 1.5; // Multiplier to make max volume higher
     backAudio.volume = Math.min(1, Math.pow(intensity, 3) * volumeMultiplier); // Calculate volume based on intensity, with enhanced max volume
-
 });
