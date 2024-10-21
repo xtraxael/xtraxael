@@ -159,3 +159,87 @@ document.addEventListener('mousemove', function (e) {
     const volumeMultiplier = 1.5; // Multiplier to make max volume higher
     backAudio.volume = Math.min(1, Math.pow(intensity, 3) * volumeMultiplier); // Calculate volume based on intensity, with enhanced max volume
 });
+
+
+
+// Step 1: Setup the canvas and audio context
+document.addEventListener("DOMContentLoaded", function () {
+    const canvas = document.getElementById("audio-visualizer");
+    const ctx = canvas.getContext("2d");
+
+    // Create an audio element for the existing audio file (e.g., Cntrl.mp3)
+    const audio = new Audio("Cntrl.mp3");
+    audio.loop = true; // Loop the audio for continuous playback
+
+    // Step 2: Create AudioContext and AnalyserNode
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const analyser = audioContext.createAnalyser();
+
+    // Connect audio element to the AudioContext
+    const source = audioContext.createMediaElementSource(audio);
+    source.connect(analyser);
+    analyser.connect(audioContext.destination);
+
+    analyser.fftSize = 2048; // Set FFT size for higher frequency resolution
+    const bufferLength = analyser.frequencyBinCount; // Number of data points
+    const dataArray = new Uint8Array(bufferLength);
+
+    // Step 3: Play audio on interaction (due to autoplay restrictions)
+    const playButton = document.createElement("button");
+    playButton.textContent = "Play Audio";
+    playButton.style.position = "absolute";
+    playButton.style.top = "60%";
+    playButton.style.left = "50%";
+    playButton.style.transform = "translate(-50%, -50%)";
+    playButton.style.padding = "15px 30px";
+    playButton.style.fontSize = "20px";
+
+    document.body.appendChild(playButton);
+
+    playButton.addEventListener("click", function () {
+        if (audioContext.state === "suspended") {
+            audioContext.resume();
+        }
+        audio.play().catch((error) => {
+            console.error("Audio playback failed:", error);
+        });
+        document.body.removeChild(playButton); // Remove play button after starting audio
+    });
+
+    // Step 4: Draw the visualizer
+    function draw() {
+        requestAnimationFrame(draw);
+
+        analyser.getByteTimeDomainData(dataArray);
+
+        ctx.fillStyle = "black"; // Background color for canvas
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = "red"; // Waveform color
+
+        ctx.beginPath();
+
+        const sliceWidth = (canvas.width * 1.0) / bufferLength;
+        let x = 0;
+
+        for (let i = 0; i < bufferLength; i++) {
+            const v = dataArray[i] / 128.0;
+            const y = (v * canvas.height) / 2;
+
+            if (i === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+
+            x += sliceWidth;
+        }
+
+        ctx.lineTo(canvas.width, canvas.height / 2);
+        ctx.stroke();
+    }
+
+    draw(); // Start drawing the visualizer
+});
+
