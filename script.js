@@ -76,17 +76,18 @@ document.getElementById("email-form").addEventListener("submit", function(e) {
 });
 
 document.querySelector(".signup-form h2").addEventListener("click", function() {
-    // Create a new page
-    const newWindow = window.open("", "_self"); // Open a new page in the same tab
+    // Redirect to the same page but modify the content dynamically
+    document.body.innerHTML = ""; // Clear the existing content
+    
+    // Set the background color of the current page to red
+    document.body.style.backgroundColor = "red";
 
-    // Set the background color of the new page to red
-    newWindow.document.body.style.backgroundColor = "red";
+    // Add content directly to the current page
+    document.body.innerHTML = "<h1>Welcome to the New Page!</h1><p>Thank you for joining us!</p>";
 
-    // Add some content to the new page (optional)
-    newWindow.document.body.innerHTML = "<h1>Welcome to the New Page!</h1><p>Thank you for joining us!</p>";
 
     // Create an image element for Cntrl.jpg
-    const img = newWindow.document.createElement("img");
+    const img = document.createElement("img");
     img.src = "Cntrl.jpg"; // Replace with the correct path to Cntrl.jpg
     img.alt = "Cntrl Image";
 
@@ -100,10 +101,10 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
     img.style.zIndex = "10000"; // Ensure it's above all other elements
 
     // Append the image to the body of the new page
-    newWindow.document.body.appendChild(img);
+    document.body.appendChild(img);
     
     // Create a play button
-    const playButton = newWindow.document.createElement("button");
+    const playButton = document.createElement("button");
     playButton.textContent = "Play";
     playButton.style.position = "absolute";
     playButton.style.top = "50%";
@@ -114,12 +115,12 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
     playButton.style.zIndex = "10001"; // Ensure it's above all other elements
 
     // Append the play button to the body of the new page
-    newWindow.document.body.appendChild(playButton);
+    document.body.appendChild(playButton);
 
     // Create an audio element for back1.mp3
-    const audio = newWindow.document.createElement("audio");
+    const audio = document.createElement("audio");
     audio.src = "Cntrl.mp3"; // Replace with the correct path to back1.mp3
-    newWindow.document.body.appendChild(audio);
+    document.body.appendChild(audio);
 
    // Add an event listener to the play button to play the audio
     playButton.addEventListener("click", function () {
