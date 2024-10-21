@@ -153,4 +153,3 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
         // Update volume of back1.mp3 based on the mouse distance
         backAudio.volume = Math.max(0, Math.min(1, intensity)); // Calculate volume based on intensity, clamped between 0 and 1
     });
-});
