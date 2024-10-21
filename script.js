@@ -135,9 +135,8 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
         });     
 });
 
-// DYNAMIC VOLUME CONTROL HOMEPAGE // ------------------------------------------------------
+// CONSOLIDATED MOUSE MOVE // ------------------------------------------------------
 
-// Add this JavaScript code for handling mousemove and dynamic volume control of back1.mp3
 document.addEventListener('DOMContentLoaded', function () {
     // Create an audio element for back1.mp3
     const backAudio = new Audio('back1.mp3'); // Make sure the path to back1.mp3 is correct
@@ -153,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }, { once: true }); // Ensure audio plays only once after the first interaction
 
-    // Add mousemove event listener to adjust volume
+    // Add mousemove event listener to handle both glow effect and volume adjustment
     document.addEventListener('mousemove', function (e) {
         const logo = document.getElementById('logo');
 
@@ -171,10 +170,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Define the maximum effect distance and maximum values for effects
         const maxDistance = 2000; // Maximum distance at which the effects are visible
+        const maxGlowSize = 150; // Maximum size of the glow in pixels
+        const maxBlur = 10; // Maximum blur amount in pixels
+
+        // Calculate intensity based on distance
+        const intensity = Math.max(0, 1 - (distance / maxDistance));
+
+        // Calculate glow size and opacity
+        const glowSize = maxGlowSize * intensity;
+        const glowOpacity = Math.max(0, intensity);
+
+        // Calculate blur amount
+        const blurAmount = maxBlur * (1 - intensity);
+
+        // Update the logo's style based on the calculated intensity and blur
+        logo.style.filter = `drop-shadow(0 0 ${glowSize}px rgba(255, 255, 255, ${glowOpacity})) blur(${blurAmount}px)`;
 
         // Update volume of back1.mp3 based on the mouse distance
-        backAudio.volume = Math.max(0, Math.min(1, 1 - (distance / maxDistance))); // Calculate volume based on distance, clamped between 0 and 1
+        backAudio.volume = Math.max(0, Math.min(1, intensity)); // Calculate volume based on intensity, clamped between 0 and 1
     });
 });
+
 
 
