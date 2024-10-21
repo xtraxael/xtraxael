@@ -132,6 +132,7 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
         }).catch((error) => {
             console.error("Playback failed:", error);
             alert("Playback could not be started. Please ensure the page has been interacted with.");
+        });     
 });
 
 // DYNAMIC VOLUME CONTROL HOMEPAGE // ------------------------------------------------------
@@ -159,6 +160,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Add this null check to prevent errors when the logo is not present
         if (!logo) {
             return;  // Stop execution if logo is not found
+        }
 
         const rect = logo.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
