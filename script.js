@@ -1,9 +1,14 @@
 /* jshint esversion: 6 */
+let backAudio; // Declare backAudio in a wider scope
 
 // Add this JavaScript code for handling the "Join" text and form visibility
 document.addEventListener('DOMContentLoaded', function() {
     const joinText = document.querySelector('.signup-form h2');
     const formContainer = document.querySelector('.signup-form form');
+
+    backAudio = new Audio('back1.mp3'); // Initialize backAudio
+    backAudio.loop = true; // Loop the audio so it plays continuously
+    backAudio.volume = 0.0; // Set the initial volume to imperceptible (essentially muted)
 
     // Add click event listener to "Join" text
     joinText.addEventListener('click', function() {
@@ -96,14 +101,8 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
 });
 
 // CONSOLIDATED MOUSE MOVE // ------------------------------------------------------
-let backAudio; // Declare backAudio in a wider scope
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Create an audio element for back1.mp3
-    backAudio = new Audio('back1.mp3'); // Initialize backAudio here
-    backAudio.loop = true; // Loop the audio
-    backAudio.volume = 0.0; // Start with imperceptible volume
-});
+
     // Play the audio only after a user interaction to bypass browser autoplay restrictions
     document.body.addEventListener("click", function () {
         if (backAudio.paused) {
