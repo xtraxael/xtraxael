@@ -1,4 +1,3 @@
-// LOGO GLOW
 document.addEventListener('mousemove', function(e) {
     const logo = document.getElementById('logo');
     const rect = logo.getBoundingClientRect();
@@ -27,64 +26,7 @@ document.addEventListener('mousemove', function(e) {
     logo.style.filter = `drop-shadow(0 0 ${glowSize}px rgba(255, 255, 255, ${glowOpacity})) blur(${blurAmount}px)`;
 });
 
-
-// HOMEPAGE AUDIO WITH DISTANCE BASED VOLUME CONTROL
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    // Create an audio element for back1.mp3
-    const audio = new Audio('back1.mp3'); // Replace with the correct path to back1.mp3
-    audio.loop = true; // Loop the audio
-    audio.volume = 0.0; // Start with an imperceptible volume
-
-    // Play the audio only after a user interaction to bypass browser restrictions
-    document.body.addEventListener("click", function() {
-        audio.play().catch(error => {
-            console.error("Playback failed:", error);
-        });
-    }, { once: true }); // Play only once after the first user click
-
-    // Get reference to the logo
-    const logo = document.getElementById('logo');
-    if (!logo) {
-        console.error("Logo element not found!");
-        return; // Stop execution if logo is not found
-    }
-
-    // Function to calculate the distance between two points
-    function calculateDistance(x1, y1, x2, y2) {
-        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-    }
-
-    // Add mousemove event listener to track the cursor
-    document.addEventListener("mousemove", function (event) {
-        const cursorX = event.clientX;
-        const cursorY = event.clientY;
-
-        // Get the logo's position and size
-        const logoRect = logo.getBoundingClientRect();
-        const logoX = logoRect.left + logoRect.width / 2; // Center X of the logo
-        const logoY = logoRect.top + logoRect.height / 2; // Center Y of the logo
-
-        // Calculate the distance from the cursor to the center of the logo
-        const distance = calculateDistance(cursorX, cursorY, logoX, logoY);
-
-        // Define the maximum distance at which the volume starts to increase
-        const maxDistance = 500; // Adjust as needed
-
-        // Calculate the volume based on distance
-        let volume = 1 - distance / maxDistance;
-        volume = Math.max(0, Math.min(volume, 1)); // Clamp the value between 0 and 1
-
-        // Set the audio volume
-        audio.volume = volume;
-    });
-});
-
-
 // Add this JavaScript code for handling the "Join" text and form visibility
-
-
 
 document.addEventListener('DOMContentLoaded', function() {
     const joinText = document.querySelector('.signup-form h2');
@@ -104,8 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// EMAIL FORM SUBMISSION
-
 document.getElementById("email-form").addEventListener("submit", function(e) {
     e.preventDefault(); // Prevent default form submission
 
@@ -122,20 +62,16 @@ document.getElementById("email-form").addEventListener("submit", function(e) {
     } else {
         alert("Please enter a valid email.");
     }
-});
 
-// NEW PAGE + AUDIO PLAY BUTTON 
+
+
+/*New Page*/
     
 });
 
 document.querySelector(".signup-form h2").addEventListener("click", function() {
     // Create a new page
     const newWindow = window.open("", "_self"); // Open a new page in the same tab
-
-    if (!newWindow) {
-        alert("Pop-up was blocked! Please allow pop-ups for this website.");
-        return;
-    }
 
     // Set the background color of the new page to red
     newWindow.document.body.style.backgroundColor = "red";
@@ -181,9 +117,6 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
 
     // Add an event listener to the play button to play the audio
     playButton.addEventListener("click", function() {
-        audio.play().catch(error => {
-            console.error("Playback failed:", error);
-            alert("Playback could not be started. Please try interacting with the page.");
-        });
+        audio.play();
     });
 });
