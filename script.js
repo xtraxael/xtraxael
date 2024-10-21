@@ -100,7 +100,7 @@ let backAudio; // Declare backAudio in a wider scope
 
 document.addEventListener('DOMContentLoaded', function () {
     // Create an audio element for back1.mp3
-    backAudio = new Audio('audio/back1.mp3'); // Initialize backAudio here
+    backAudio = new Audio('back1.mp3'); // Initialize backAudio here
     backAudio.loop = true; // Loop the audio
     backAudio.volume = 0.0; // Start with imperceptible volume
 });
