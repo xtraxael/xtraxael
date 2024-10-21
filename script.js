@@ -152,6 +152,8 @@ document.addEventListener('mousemove', function (e) {
     // Update the logo's style based on the calculated intensity and blur
     logo.style.filter = `drop-shadow(0 0 ${glowSize}px rgba(255, 255, 255, ${glowOpacity})) blur(${blurAmount}px)`;
 
-    // Update volume of back1.mp3 based on the mouse distance
-    backAudio.volume = Math.max(0, Math.min(1, intensity)); // Calculate volume based on intensity, clamped between 0 and 1
+    // Increase the max volume by multiplying the intensity by a factor, then clamp it to 1
+    const volumeMultiplier = 1.5; // Multiplier to make max volume higher
+    backAudio.volume = Math.min(1, Math.pow(intensity, 3) * volumeMultiplier); // Calculate volume based on intensity, with enhanced max volume
+
 });
