@@ -135,12 +135,12 @@ document.addEventListener('mousemove', function (e) {
     const distance = Math.sqrt(Math.pow(centerX - e.clientX, 2) + Math.pow(centerY - e.clientY, 2));
 
     // Define the maximum effect distance and maximum values for effects
-    const maxDistance = 2000; // Maximum distance at which the effects are visible
+    const maxDistance = 500; // Maximum distance at which the effects are visible
     const maxGlowSize = 150; // Maximum size of the glow in pixels
     const maxBlur = 10; // Maximum blur amount in pixels
 
     // Calculate intensity based on distance
-    const intensity = Math.max(0, 1 - (distance / maxDistance));
+    const intensity = Math.max(0, 1 - Math.pow(distance / maxDistance, 2));
 
     // Calculate glow size and opacity
     const glowSize = maxGlowSize * intensity;
