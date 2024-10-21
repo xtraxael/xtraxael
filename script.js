@@ -30,6 +30,9 @@ document.addEventListener('mousemove', function(e) {
 
     // Update the logo's style based on the calculated intensity and blur
     logo.style.filter = `drop-shadow(0 0 ${glowSize}px rgba(255, 255, 255, ${glowOpacity})) blur(${blurAmount}px)`;
+    
+    // **Modified Line**: Update volume of back1.mp3 based on the mouse distance
+    backAudio.volume = Math.max(0, Math.min(1, 1 - (distance / maxDistance))); // Calculate volume based on distance, clamped between 0 and 1
 });
 
 // Add this JavaScript code for handling the "Join" text and form visibility
@@ -117,9 +120,9 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
     // Append the play button to the body of the new page
     document.body.appendChild(playButton);
 
-    // Create an audio element for back1.mp3
+
     const audio = document.createElement("audio");
-    audio.src = "Cntrl.mp3"; // Replace with the correct path to back1.mp3
+    audio.src = "Cntrl.mp3"; 
     document.body.appendChild(audio);
 
     // Add an event listener to the play button to play the audio
@@ -129,7 +132,27 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
         }).catch((error) => {
             console.error("Playback failed:", error);
             alert("Playback could not be started. Please ensure the page has been interacted with.");
-         });
+
+
+// DYNAMIC VOLUME CONTROL HOMEPAGE // ------------------------------------------------------
+
+    // Add this JavaScript code for handling mousemove and dynamic volume control of back1.mp3
+document.addEventListener('DOMContentLoaded', function () {
+    // Create an audio element for back1.mp3
+    const backAudio = new Audio('back1.mp3'); // Make sure the path to back1.mp3 is correct
+    backAudio.loop = true; // Loop the audio
+    backAudio.volume = 0.0; // Start with imperceptible volume
+
+    // Play the audio only after a user interaction to bypass browser autoplay restrictions
+    document.body.addEventListener("mousemove", function() {
+        if (backAudio.paused) {
+            backAudio.play().catch((error) => {
+                console.error("Audio playback failed:", error);
+            });
+        }
+    }, { once: true }); // Ensure audio plays only once after the first interaction
+        
+        });
     });
 });    
 
