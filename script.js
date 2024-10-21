@@ -100,9 +100,9 @@ let backAudio; // Declare backAudio in a wider scope
 
 document.addEventListener('DOMContentLoaded', function () {
     // Create an audio element for back1.mp3
-        backAudio = new Audio('audio/back1.mp3'); // Initialize backAudio here
-        backAudio.loop = true; // Loop the audio
-        backAudio.volume = 0.0; // Start with imperceptible volume
+    backAudio = new Audio('audio/back1.mp3'); // Initialize backAudio here
+    backAudio.loop = true; // Loop the audio
+    backAudio.volume = 0.0; // Start with imperceptible volume
 
     // Play the audio only after a user interaction to bypass browser autoplay restrictions
     document.body.addEventListener("click", function () {
@@ -112,9 +112,13 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     }, { once: true }); // Ensure audio plays only once after the first interaction
-});
+
     // Add mousemove event listener to handle both glow effect and volume adjustment
     document.addEventListener('mousemove', function (e) {
+        if (!backAudio) {
+            return; // Ensure backAudio has been initialized
+        }
+
         const logo = document.getElementById('logo');
 
         // Add this null check to prevent errors when the logo is not present
