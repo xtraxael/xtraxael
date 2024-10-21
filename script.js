@@ -62,14 +62,6 @@ document.getElementById("email-form").addEventListener("submit", function(e) {
     } else {
         alert("Please enter a valid email.");
     }
-
-
-
-    
-
-
-
-
     
 
     
