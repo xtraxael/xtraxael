@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     backAudio.volume = 0.0; // Set the initial volume to imperceptible (essentially muted)
 
     // Add click event listener to "Join" text
-    joinText.addEventListener('click', function() {
+    joinText.addEventListener('mousemove', function() {
         // Fade out "Join" text
         joinText.style.opacity = '0';
 
