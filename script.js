@@ -98,9 +98,13 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
 
 document.addEventListener('DOMContentLoaded', function () {
     // Create an audio element for back1.mp3
-    const backAudio = new Audio('back1.mp3'); // Make sure the path to back1.mp3 is correct
-    backAudio.loop = true; // Loop the audio
-    backAudio.volume = 0.0; // Start with imperceptible volume
+   
+    let backAudio; // Declare backAudio in a wider scope
+    
+    document.addEventListener('DOMContentLoaded', function () {
+        backAudio = new Audio('audio/back1.mp3'); // Initialize backAudio here
+        backAudio.loop = true; // Loop the audio
+        backAudio.volume = 0.0; // Start with imperceptible volume
 
     // Play the audio only after a user interaction to bypass browser autoplay restrictions
     document.body.addEventListener("click", function () {
