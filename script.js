@@ -71,12 +71,12 @@ document.getElementById("email-form").addEventListener("submit", function(e) {
     } else {
         alert("Please enter a valid email.");
     }
-
+});
 
 
 /*New Page*/
     
-});
+
 
 document.querySelector(".signup-form h2").addEventListener("click", function() {
     // Redirect to the same page but modify the content dynamically
@@ -132,7 +132,7 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
         }).catch((error) => {
             console.error("Playback failed:", error);
             alert("Playback could not be started. Please ensure the page has been interacted with.");
-
+});
 
 // DYNAMIC VOLUME CONTROL HOMEPAGE // ------------------------------------------------------
 
