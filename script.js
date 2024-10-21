@@ -1,5 +1,11 @@
 document.addEventListener('mousemove', function(e) {
     const logo = document.getElementById('logo');
+
+     // Add this null check to prevent errors when the logo is not present
+    if (!logo) {
+        return;  // Stop execution if logo is not found
+    }
+
     const rect = logo.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
