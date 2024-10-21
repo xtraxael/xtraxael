@@ -62,6 +62,14 @@ document.getElementById("email-form").addEventListener("submit", function(e) {
     } else {
         alert("Please enter a valid email.");
     }
+
+
+
+    
+
+
+
+
     
 
     
@@ -76,9 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Play the audio only after a user interaction to bypass browser restrictions
     document.body.addEventListener("click", function() {
-        audio.play().catch(error => {
-            console.error("Playback failed:", error);
-        });
+        audio.play();
     }, { once: true }); // Play only once after the first user click
 
     // Get reference to the logo
@@ -91,12 +97,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Add mousemove event listener to track the cursor
     document.addEventListener("mousemove", function (event) {
-        if (logo) {
-            // Get the cursor's position
-            const cursorX = event.clientX;
-            const cursorY = event.clientY;
+        // Get the cursor's position
+        const cursorX = event.clientX;
+        const cursorY = event.clientY;
 
-            // Get the logo's position and size
+        // Get the logo's position and size
+        if (logo) {
             const logoRect = logo.getBoundingClientRect();
             const logoX = logoRect.left + logoRect.width / 2; // Center X of the logo
             const logoY = logoRect.top + logoRect.height / 2; // Center Y of the logo
@@ -117,8 +123,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+
 /*New Page*/
-  document.querySelector(".signup-form h2").addEventListener("click", function() {
+    document.querySelector(".signup-form h2").addEventListener("click", function() {
     // Create a new page
     const newWindow = window.open("", "_self"); // Open a new page in the same tab
 
@@ -169,11 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Add an event listener to the play button to play the audio
     playButton.addEventListener("click", function() {
-        cntrlAudio.play().catch(error => {
-            console.error("Playback failed:", error);
-            alert("Playback could not be started. Please try interacting with the page.");
-        });
+        cntrlAudio.play();
     });
 });
-
 
