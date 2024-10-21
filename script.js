@@ -106,7 +106,7 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
 // CONSOLIDATED MOUSE MOVE // ------------------------------------------------------
 
 // Play the audio only after a user interaction to bypass browser autoplay restrictions
-document.addEventListener("mousemove", function () {
+document.body.addEventListener("click", function () {
     if (backAudio.paused) {
         backAudio.play().catch((error) => {
             console.error("Audio playback failed:", error);
