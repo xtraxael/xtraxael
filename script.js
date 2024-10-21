@@ -106,18 +106,13 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
 // CONSOLIDATED MOUSE MOVE // ------------------------------------------------------
 
 // Play the audio only after a user interaction to bypass browser autoplay restrictions
-const startAudio = function () {
+document.addEventListener("mousemove", function () {
     if (backAudio.paused) {
         backAudio.play().catch((error) => {
             console.error("Audio playback failed:", error);
         });
     }
-};
-
-// Add multiple events to increase the chance of triggering audio playback
-["mousemove", "mousedown", "touchstart", "pointerdown"].forEach(event => {
-    document.addEventListener(event, startAudio, { once: true });
-});
+}, { once: true }); // Ensure audio plays only once after the first interaction
 
 // Add mousemove event listener to handle both glow effect and volume adjustment
 document.addEventListener('mousemove', function (e) {
