@@ -36,10 +36,7 @@ document.getElementById("email-form").addEventListener("submit", function(e) {
     }
 });
 
-
-/*New Page*/
-    
-
+/* New Page */
 
 document.querySelector(".signup-form h2").addEventListener("click", function() {
     // Redirect to the same page but modify the content dynamically
@@ -50,7 +47,6 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
 
     // Add content directly to the current page
     document.body.innerHTML = "<h1>Welcome to the New Page!</h1><p>Thank you for joining us!</p>";
-
 
     // Create an image element for Cntrl.jpg
     const img = document.createElement("img");
@@ -83,7 +79,6 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
     // Append the play button to the body of the new page
     document.body.appendChild(playButton);
 
-
     const audio = document.createElement("audio");
     audio.src = "Cntrl.mp3"; 
     document.body.appendChild(audio);
@@ -95,7 +90,8 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
         }).catch((error) => {
             console.error("Playback failed:", error);
             alert("Playback could not be started. Please ensure the page has been interacted with.");
-        });     
+        });
+    });
 });
 
 // CONSOLIDATED MOUSE MOVE // ------------------------------------------------------
@@ -153,6 +149,3 @@ document.addEventListener('DOMContentLoaded', function () {
         backAudio.volume = Math.max(0, Math.min(1, intensity)); // Calculate volume based on intensity, clamped between 0 and 1
     });
 });
-
-
-
