@@ -95,11 +95,11 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
 });
 
 // CONSOLIDATED MOUSE MOVE // ------------------------------------------------------
+let backAudio; // Declare backAudio in a wider scope
 
 document.addEventListener('DOMContentLoaded', function () {
     // Create an audio element for back1.mp3
    
-    let backAudio; // Declare backAudio in a wider scope
     
     document.addEventListener('DOMContentLoaded', function () {
         backAudio = new Audio('audio/back1.mp3'); // Initialize backAudio here
