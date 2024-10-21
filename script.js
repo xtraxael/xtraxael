@@ -4,6 +4,9 @@ let backAudio = new Audio('back1.mp3'); // Initialize backAudio here
 backAudio.loop = true; // Loop the audio
 backAudio.volume = 0.0; // Start with imperceptible volume
 
+
+/*
+
 // Add this JavaScript code for handling the "Join" text and form visibility
 document.addEventListener('DOMContentLoaded', function() {
     const joinText = document.querySelector('.signup-form h2');
@@ -25,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
             formContainer.style.visibility = 'visible'; // Ensure it's visible
         }, 500); // Match this with the CSS transition duration (0.5s)
     });
-});
+}); */
 
 document.getElementById("email-form").addEventListener("submit", function(e) {
     e.preventDefault(); // Prevent default form submission
