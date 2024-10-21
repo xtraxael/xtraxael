@@ -6,11 +6,11 @@ document.addEventListener('mousemove', function(e) {
     const centerY = rect.top + rect.height / 2;
    
     //a1 - logo debug
-    const logo = document.getElementById('logo');
-    if (!logo) {
-        console.error("Logo element not found!");
-        return; // Stop execution if logo is not found
-    }
+   // const logo = document.getElementById('logo');
+   // if (!logo) {
+    //    console.error("Logo element not found!");
+   //     return; // Stop execution if logo is not found
+    //}
     //a1
 
     // Calculate distance from the center of the logo to the mouse cursor
