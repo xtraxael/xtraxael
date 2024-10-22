@@ -133,7 +133,8 @@ document.querySelector(".signup-form h2").addEventListener("click", function () 
     const canvas = document.createElement("canvas");
     canvas.id = "audio-visualizer";
     canvas.width = window.innerWidth; // Set canvas dimensions as required
-    canvas.height = document.body.scrollHeight;
+    canvas.height = Math.max(document.body.scrollHeight, window.innerHeight); // Ensures the canvas covers everything
+
     document.body.appendChild(canvas);
 
     const ctx = canvas.getContext("2d");
