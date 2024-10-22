@@ -57,20 +57,46 @@ h1, p, img {
     gap: 20px; /* Adds spacing between elements */
 }
 
-/* Signup form inside the menu, in black and white */
 .signup-form {
     display: flex;
     align-items: center;
-    color: #ffffff; /* Set the text color to white */
 }
 
+/* Optional: Add a transition for fading out the "Join" text */
+.signup-form h2 {
+    transition: opacity 0.5s ease;
+    z-index: 201; /* Ensure the "JOIN" text is also on top */
+    color: white; /* Set text color to white for better contrast */
+}
+
+/* Container to hold both the logo and the JOIN text */
+.content-wrapper {
+    position: relative; /* Allow overlapping elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stack logo and JOIN text vertically */
+    margin-top: 100px; /* Adjust margin as needed to position the logo */
+}
+
+/* Center the logo using Flexbox */
+.geeks {
+    width: 900px; /* Adjust logo size if needed */
+    height: 800px;
+    background: url('Logo.png') no-repeat center center;
+    background-size: contain;
+    z-index: 200; /* Adjust this based on whether the logo is above or below the form */
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+}
+
+/* Style for the input fields inside the menu form */
 .signup-form input[type="email"] {
     width: 200px; /* Adjust width as needed */
     padding: 10px;
     text-align: center;
     border: none;
     border-radius: 20px; /* Rounded corners for the input */
-    background-color: #000000; /* Black background */
+    background-color: rgba(0, 0, 0, 0.9); /* Black background with some transparency */
     color: white;
     font-size: 16px;
     margin-right: 10px; /* Space between input field and submit button */
@@ -84,9 +110,14 @@ h1, p, img {
     border-radius: 50%; /* Rounded button */
     text-align: center;
     cursor: pointer;
-    background-color: #ffffff; /* White button */
+    background-color: #ffffff; /* White color for button */
     color: black;
     outline: none;
+}
+
+/* Hover effect for the submit button */
+.signup-form input[type="submit"]:hover {
+    background-color: #dddddd; /* Light grey when hovered */
 }
 
 /* Placeholder style */
@@ -94,35 +125,4 @@ h1, p, img {
     color: #ffffff; /* Set placeholder text color */
     opacity: 1; /* Ensure full opacity */
     font-size: 16px;
-}
-
-/* Keep "Join" text chained to the logo */
-.signup-form h2 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #000000; /* Black text */
-    z-index: 201; /* Adjust accordingly */
-    transition: opacity 0.5s ease;
-}
-
-/* Container to hold both the logo and "Join" text */
-.content-wrapper {
-    position: relative; /* Allow overlapping elements */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column; /* Stack logo and "Join" text vertically */
-    margin-top: 100px; /* Adjust as needed to align correctly */
-}
-
-/* Center the logo */
-.geeks {
-    width: 900px; /* Adjust logo size if needed */
-    height: 800px;
-    background: url('Logo.png') no-repeat center center;
-    background-size: contain;
-    z-index: 200; /* Adjust this based on the desired layering */
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
 }
