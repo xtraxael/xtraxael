@@ -63,6 +63,16 @@ h1, p, img {
     align-items: center;
 }
 
+.geeks {
+    width: 900px; /* Adjust size as needed */
+    height: 800px;
+    background: url('Logo.png') no-repeat center center;
+    background-size: contain;
+    z-index: 200; /* Ensure it's above other elements if necessary */
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+    margin-bottom: -470px; /* Adjust based on layout */
+}
+
 .signup-form input[type="email"] {
     width: 200px; /* Adjust width as needed */
     padding: 10px;
