@@ -90,6 +90,7 @@ h1, p, img {
     align-items: center;
     flex-direction: column; /* Stack logo and JOIN text vertically */
     gap: 5px; /* Adjust spacing between the logo and "JOIN" text */
+    margin: 0 auto; /* Center the entire container horizontally */
 }
 
 /* Center the logo using Flexbox */
