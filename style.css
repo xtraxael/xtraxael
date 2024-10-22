@@ -62,11 +62,11 @@ h1, p, img {
     align-items: center;
 }
 
-/* Optional: Add a transition for fading out the "Join" text */
+/* Optional: Add a transition for fading out the "JOIN" text */
 .signup-form h2 {
     transition: opacity 0.5s ease;
-    z-index: 201; /* Ensure the "JOIN" text is also on top */
     color: white; /* Set text color to white for better contrast */
+    margin: 0; /* Remove any extra margin */
 }
 
 /* Container to hold both the logo and the JOIN text */
@@ -77,6 +77,7 @@ h1, p, img {
     align-items: center;
     flex-direction: column; /* Stack logo and JOIN text vertically */
     margin-top: 100px; /* Adjust margin as needed to position the logo */
+    gap: 10px; /* Adjust spacing between the logo and "JOIN" text */
 }
 
 /* Center the logo using Flexbox */
@@ -126,6 +127,8 @@ h1, p, img {
     opacity: 1; /* Ensure full opacity */
     font-size: 16px;
 }
+
+/* Set default z-index for elements to avoid overlapping issues */
 * {
     z-index: 300;
 }
