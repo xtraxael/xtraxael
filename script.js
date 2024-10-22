@@ -88,6 +88,22 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
     playButton.style.fontSize = "20px";
     playButton.style.zIndex = "10001"; // Ensure it's above all other elements
 
+      // Add Cntrl.mp3 audio element on Page 2
+    const audio = document.createElement("audio");
+    audio.src = "Cntrl.mp3"; 
+    document.body.appendChild(audio);
+
+    // Add an event listener to the play button to play the audio
+    playButton.addEventListener("click", function () {
+        audio.play().then(() => {
+            console.log("Playback started successfully.");
+        }).catch((error) => {
+            console.error("Playback failed:", error);
+            alert("Playback could not be started. Please ensure the page has been interacted with.");
+        });
+    });
+});
+    
     // Append the play button to the body of the new page
     document.body.appendChild(playButton);
 
