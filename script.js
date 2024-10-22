@@ -1,4 +1,8 @@
 /* jshint esversion: 6 */
+
+//declare intensity//
+let currentIntensity = 0; // Track the current level of the logo's pulsing effect
+
 // Declare backAudio in a wider scope
 let backAudio = new Audio('back1.mp3'); // Initialize backAudio here
 backAudio.loop = true; // Loop the audio
