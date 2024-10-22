@@ -62,7 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const volumeMultiplier = 1.5; // Adjust if needed
         backAudio.volume = Math.min(1, Math.pow(intensity, 3) * volumeMultiplier);
     });
-});
 
 
 
