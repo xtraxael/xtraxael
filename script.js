@@ -262,9 +262,14 @@ document.querySelector(".signup-form h2").addEventListener("click", function () 
     // Add Cntrl.mp3 audio element on Page 2
     const audio = new Audio("Cntrl.mp3");
     document.body.appendChild(audio);
-   
-    
-// Add an event listener to the play button to play the audio
+
+
+
+
+
+
+
+    // Add an event listener to the play button to play the audio
 playButtonPage2.addEventListener("click", function () {
     // Play the audio
     audio.play().then(() => {
@@ -282,20 +287,31 @@ playButtonPage2.addEventListener("click", function () {
     logo.id = "logo";
     logo.classList.add("geeks", "fade-in"); // Add fade-in animation class
 
-    // Position the logo to be centered over the canvas
+    // Position the logo to be centered on the canvas
     const canvas = document.getElementById('audio-visualizer');
     const canvasRect = canvas.getBoundingClientRect();
 
     // Set the styles for the logo to position it at the center of the canvas
     logo.style.position = "absolute";
-    logo.style.top = `${canvasRect.top + window.scrollY + canvasRect.height / 2 - 400}px`; // Adjust to center vertically based on logo height (assuming 800px height)
-    logo.style.left = `${canvasRect.left + window.scrollX + canvasRect.width / 2 - 450}px`; // Adjust to center horizontally based on logo width (assuming 900px width)
-    logo.style.transform = "translate(-50%, -50%)";
+    logo.style.top = `${canvasRect.top + window.scrollY + canvasRect.height / 2}px`; // Center vertically within the canvas
+    logo.style.left = `${canvasRect.left + window.scrollX + canvasRect.width / 2}px`; // Center horizontally within the canvas
+    logo.style.transform = "translate(-50%, -50%)"; // Adjust to ensure perfect centering
     logo.style.zIndex = "10001"; // Ensure it's above other elements
 
     document.body.appendChild(logo);
-}); 
+});
 
+
+
+
+
+
+
+
+
+
+
+    
     
     // Setup visualizer for Cntrl.mp3
     const canvas = document.createElement("canvas");
