@@ -67,7 +67,7 @@ h1, p, img {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -30%); /* Move to the center of the logo */
+    transform: translate(-50%, -60%); /* Move to the center of the logo */
     color: white; /* Set text color to white for better contrast */
     z-index: 201; /* Ensure the JOIN text is above the logo */
     margin: 0; /* Remove any extra margin */
