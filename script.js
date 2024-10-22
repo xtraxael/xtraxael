@@ -153,51 +153,30 @@ document.addEventListener('DOMContentLoaded', () => {
         return re.test(email);
     }
 
-    // Function to submit data (you'll need to implement server-side handling)
-    function submitData() {
-        // Show spinner
+    // front end data submission // 
+    async function submitData() {
         const spinner = document.createElement('div');
         spinner.classList.add('spinner');
         signupForm.appendChild(spinner);
-
-        // Fetch IP and location before submitting
-        fetchIPAndLocation().then(() => {
-            // Combine all data
-            const completeData = {
-                ...userData
-            };
-
-            console.log('User Data:', completeData);
-
-            // Send data to your server
-            fetch('/signup', { // Ensure this URL matches your backend endpoint
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(completeData),
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                alert('Signup successful!');
-                // Reset form or redirect as needed
-                signupForm.innerHTML = '<input type="button" id="signup-button" value="JOIN">';
-                signupButton = document.getElementById('signup-button');
-                signupButton.onclick = () => handleFormStep(1);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                alert('There was an error processing your signup.');
-            })
-            .finally(() => {
-                // Remove spinner
-                if (signupForm.contains(spinner)) {
-                    signupForm.removeChild(spinner);
-                }
-            });
-        });
+    
+        await fetchIPAndLocation();
+    
+        console.log('User Data:', userData);
+        alert('Signup successful! Check the console for your submitted data.');
+    
+        signupForm.innerHTML = '<input type="button" id="signup-button" value="JOIN">';
+        signupButton = document.getElementById('signup-button');
+        signupButton.onclick = () => handleFormStep(1);
     }
+
+
+
+
+
+
+
+
+    
 
     // Initial event listener for JOIN button
     signupButton.addEventListener('click', () => handleFormStep(1));
