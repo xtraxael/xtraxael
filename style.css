@@ -57,6 +57,15 @@ h1, p, img {
     gap: 20px; /* Adds spacing between elements */
 }
 
+/* Style for the individual links inside the menu */
+.menu a {
+    color: white; /* Set text color to white */
+    text-decoration: none; /* Remove underline */
+    padding: 10px;
+    margin: 0 10px; /* Add horizontal spacing between items */
+    font-size: 20px;
+}
+
 .signup-form {
     display: flex;
     align-items: center;
