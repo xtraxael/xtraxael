@@ -76,11 +76,10 @@ h1, p, img {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) !important; /* Center the text in the middle of the logo */
+    transform: translate(-50%, -60%) !important; /* Move to the center of the logo */
     color: white; /* Set text color to white for better contrast */
-    z-index: 400; /* Ensure the JOIN text is above the logo */
+    z-index: 201; /* Ensure the JOIN text is above the logo */
     margin: 0; /* Remove any extra margin */
-    pointer-events: none; /* Ensures click events pass through to the underlying logo */
 }
 
 /* Container to hold both the logo and the JOIN text */
@@ -91,20 +90,20 @@ h1, p, img {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column; /* Stack logo and JOIN text vertically */
+    gap: 5px; /* Adjust spacing between the logo and "JOIN" text */
     margin: 0 auto; /* Center the entire container horizontally */
 }
 
-/* Center the logo */
+/* Center the logo using Flexbox */
 .geeks {
-    position: absolute;
-    width: 100%; /* Make the logo fill the entire content-wrapper */
-    height: 100%; /* Make the logo fill the entire content-wrapper */
+    width: 900px; /* Adjust logo size if needed */
+    height: 800px;
     background: url('Logo.png') no-repeat center center;
     background-size: contain;
-    z-index: 200; /* Make sure the logo is below the JOIN text */
+    z-index: 200; /* Adjust this based on whether the logo is above or below the form */
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
 }
-
 
 /* Style for the input fields inside the menu form */
 .signup-form input[type="email"] {
