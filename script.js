@@ -420,41 +420,6 @@ playButtonPage2.addEventListener("click", function () {
         });
     }
 
-    // Part 2: Reattach mousemove event listener for glow effect and volume adjustment of backAudio
-    document.addEventListener('mousemove', function (e) {
-        if (!backAudio) {
-            return; // Ensure backAudio is initialized
-        }
-
-        const logo = document.getElementById('logo'); // Ensure you have the correct element if it exists on Page 2
-
-        if (!logo) {
-            return;  // Stop execution if logo is not found
-        }
-
-        const rect = logo.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-
-        // Calculate distance from the center of the logo to the mouse cursor
-        const distance = Math.sqrt(Math.pow(centerX - e.clientX, 2) + Math.pow(centerY - e.clientY, 2));
-        const maxDistance = 900;
-        const maxGlowSize = 150;
-        const maxBlur = 10;
-        const intensity = Math.max(0, 1 - Math.pow(distance / maxDistance, 2));
-
-        // Update glow effect
-        const glowSize = maxGlowSize * intensity;
-        const glowOpacity = Math.max(0, intensity);
-        const blurAmount = maxBlur * (1 - intensity);
-        logo.style.filter = `drop-shadow(0 0 ${glowSize}px rgba(255, 0, 0, ${glowOpacity})) blur(${blurAmount}px)`;
-
-        // Update volume of back1.mp3
-        const volumeMultiplier = 1.5; // Adjust if needed
-        backAudio.volume = Math.min(1, Math.pow(intensity, 3) * volumeMultiplier);
-    });
-});
-
 
 
 
