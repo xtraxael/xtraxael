@@ -263,17 +263,25 @@ document.querySelector(".signup-form h2").addEventListener("click", function () 
     const audio = new Audio("Cntrl.mp3");
     document.body.appendChild(audio);
 
-    // Add an event listener to the play button to play the audio
+     // Add an event listener to the play button to play the audio
     playButtonPage2.addEventListener("click", function () {
+        // Play the audio
         audio.play().then(() => {
             console.log("Playback started successfully.");
         }).catch((error) => {
             console.error("Playback failed:", error);
             alert("Playback could not be started. Please ensure the page has been interacted with.");
         });
-        document.body.removeChild(playButtonPage2); // Remove play button after starting audio
+    
+        // Remove play button after starting audio
+        document.body.removeChild(playButtonPage2);
+    
+        // Create the logo element and apply the fade-in effect
+        const logo = document.createElement("div");
+        logo.id = "logo";
+        logo.classList.add("geeks", "fade-in"); // Add fade-in animation class
+        document.body.appendChild(logo);
     });
-
     // Setup visualizer for Cntrl.mp3
     const canvas = document.createElement("canvas");
     canvas.id = "audio-visualizer";
