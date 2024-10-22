@@ -324,7 +324,7 @@ playButtonPage2.addEventListener("click", function () {
     document.body.appendChild(logo);
 
     // Set FFT size for the analyser
-    analyser.fftSize = 256;
+    analyser.fftSize = 2048;
 
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
@@ -386,11 +386,22 @@ playButtonPage2.addEventListener("click", function () {
     
 // Setup visualizer for Cntrl.mp3
     const canvas = document.createElement("canvas");
-    canvas.id = "audio-visualizer";
+        canvas.id = "audio-visualizer";
+        document.body.appendChild(canvas);
+
+    // Function to resize canvas
+    function resizeCanvas() {
+        canvas.width = window.innerWidth; // Set canvas dimensions to window width
+        canvas.height = window.innerHeight; // Set canvas dimensions to window height
+}
+  // Initial resize
+    resizeCanvas();
+    
+    // Listen for resize events
+    window.addEventListener('resize', resizeCanvas);
+    
     canvas.width = window.innerWidth; // Set canvas dimensions as required
     canvas.height = Math.max(document.body.scrollHeight, window.innerHeight); // Ensures the canvas covers everything
-
-    document.body.appendChild(canvas);
     const ctx = canvas.getContext("2d");
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
