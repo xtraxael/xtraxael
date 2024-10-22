@@ -136,7 +136,7 @@ h1, p, img {
 /* Optional: Add a transition for fading out the "JOIN" text */
 .signup-form h2 {
     position: absolute;
-    top: 40%;
+    top: 48%;
     left: 50%;
     transform: translate(-50%, -60%) !important; /* Move to the center of the logo */
     color: white; /* Set text color to white for better contrast */
