@@ -353,8 +353,8 @@ function animatePumpingEffect() {
 
     // Smooth the intensity change
     const targetIntensity = averageFrequency / 256; // Normalize the intensity between 0 and 1
-    const growthFactor = 0.2; // How quickly the logo expands (increase value to make it faster)
-    const shrinkFactor = 0.9; // How aggressively the logo shrinks (increase value to make it faster)
+    const growthFactor = 0.7; // How quickly the logo expands (increase value to make it faster)
+    const shrinkFactor = 0.99; // How aggressively the logo shrinks (increase value to make it faster)
 
     // If the new intensity is higher, grow immediately. Otherwise, shrink more dramatically
     if (targetIntensity > currentIntensity) {
