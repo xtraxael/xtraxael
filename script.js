@@ -432,7 +432,7 @@ playButtonPage2.addEventListener("click", function () {
         const glowSize = maxGlowSize * intensity;
         const glowOpacity = Math.max(0, intensity);
         const blurAmount = maxBlur * (1 - intensity);
-        logo.style.filter = `drop-shadow(0 0 ${glowSize}px rgba(255, 255, 255, ${glowOpacity})) blur(${blurAmount}px)`;
+        logo.style.filter = `drop-shadow(0 0 ${glowSize}px rgba(255, 0, 0, ${glowOpacity})) blur(${blurAmount}px)`;
 
         // Update volume of back1.mp3
         const volumeMultiplier = 1.5; // Adjust if needed
