@@ -329,37 +329,52 @@ playButtonPage2.addEventListener("click", function () {
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
 
+
+
+    
+    
     // Function to animate the pumping effect based on the audio data
-    function animatePumpingEffect() {
-        requestAnimationFrame(animatePumpingEffect);
-        
-        // Get frequency data from the analyser
-        analyser.getByteFrequencyData(dataArray);
+function animatePumpingEffect() {
+    requestAnimationFrame(animatePumpingEffect);
 
-        // Calculate the average value of the frequency data to determine the intensity
-        let sum = 0;
-        for (let i = 0; i < bufferLength; i++) {
-            sum += dataArray[i];
-        }
-        const averageFrequency = sum / bufferLength;
+    // Get frequency data from the analyser
+    analyser.getByteFrequencyData(dataArray);
 
-        // Calculate the scale intensity based on the average frequency
-        const minScale = 1; // The normal size
-        const maxScale = 1.3; // Maximum pulsing size
-        const intensity = averageFrequency / 256; // Normalize the intensity between 0 and 1
-        const scale = minScale + (maxScale - minScale) * intensity;
-
-        // Apply scaling to the logo to create the pumping effect
-        logo.style.transform = `translate(-50%, -50%) scale(${scale})`;
-
-        // Optional: Add a slight rotation to create a more dynamic effect
-        const rotation = intensity * 10; // Rotate up to 10 degrees
-        logo.style.transform += ` rotate(${rotation}deg)`;
-
-        // Change the drop-shadow to a fixed red color with intensity
-        const glowOpacity = Math.max(0.2, intensity);
-        logo.style.filter = `drop-shadow(0 0 30px rgba(255, 0, 0, ${glowOpacity}))`;
+    // Calculate the average value of the frequency data to determine the intensity
+    let sum = 0;
+    for (let i = 0; i < bufferLength; i++) {
+        sum += dataArray[i];
     }
+    const averageFrequency = sum / bufferLength;
+
+    // Smooth the intensity change
+    const targetIntensity = averageFrequency / 256; // Normalize the intensity between 0 and 1
+    const smoothFactor = 0.05; // Adjust this value for faster or slower recovery (0.01 to 0.1 works well)
+    
+    // Gradually adjust the current intensity to the target intensity
+    if (targetIntensity > currentIntensity) {
+        currentIntensity = targetIntensity; // Immediately set to the new intensity if it's higher
+    } else {
+        currentIntensity += (targetIntensity - currentIntensity) * smoothFactor; // Smoothly reduce intensity over time
+    }
+
+    // Calculate the scale intensity based on the smoothed intensity
+    const minScale = 1; // The normal size
+    const maxScale = 1.3; // Maximum pulsing size
+    const scale = minScale + (maxScale - minScale) * currentIntensity;
+
+    // Apply scaling to the logo to create the pumping effect
+    logo.style.transform = `translate(-50%, -50%) scale(${scale})`;
+
+    // Optional: Add a slight rotation to create a more dynamic effect
+    const rotation = currentIntensity * 10; // Rotate up to 10 degrees
+    logo.style.transform += ` rotate(${rotation}deg)`;
+
+    // Change the drop-shadow to a fixed red color with intensity
+    const glowOpacity = Math.max(0.2, currentIntensity);
+    logo.style.filter = `drop-shadow(0 0 30px rgba(255, 0, 0, ${glowOpacity}))`;
+}
+
 
     // Start the pumping animation
     animatePumpingEffect();
