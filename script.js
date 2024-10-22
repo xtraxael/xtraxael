@@ -314,9 +314,9 @@ playButtonPage2.addEventListener("click", function () {
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
 
-    // Function to animate the glow effect based on the audio data
-    function animateGlow() {
-        requestAnimationFrame(animateGlow);
+    // Function to animate the pumping effect based on the audio data
+    function animatePumpingEffect() {
+        requestAnimationFrame(animatePumpingEffect);
         
         // Get frequency data from the analyser
         analyser.getByteFrequencyData(dataArray);
@@ -328,23 +328,28 @@ playButtonPage2.addEventListener("click", function () {
         }
         const averageFrequency = sum / bufferLength;
 
-        // Calculate the intensity of the glow effect based on the average frequency
-        const maxGlowSize = 150; // Maximum size of the glow in pixels
-        const maxBlur = 10; // Maximum blur amount in pixels
-
+        // Calculate the scale intensity based on the average frequency
+        const minScale = 1; // The normal size
+        const maxScale = 1.3; // Maximum pulsing size
         const intensity = averageFrequency / 256; // Normalize the intensity between 0 and 1
+        const scale = minScale + (maxScale - minScale) * intensity;
 
-        const glowSize = maxGlowSize * intensity;
-        const glowOpacity = Math.max(0, intensity);
-        const blurAmount = maxBlur * intensity;
+        // Apply scaling to the logo to create the pumping effect
+        logo.style.transform = `translate(-50%, -50%) scale(${scale})`;
 
-        // Update the logo's style based on the calculated intensity, with red color
-        logo.style.filter = `drop-shadow(0 0 ${glowSize}px rgba(255, 0, 0, ${glowOpacity})) blur(${blurAmount}px)`;
+        // Optional: Add a slight rotation to create a more dynamic effect
+        const rotation = intensity * 10; // Rotate up to 10 degrees
+        logo.style.transform += ` rotate(${rotation}deg)`;
+
+        // Change the drop-shadow to a fixed red color with intensity
+        const glowOpacity = Math.max(0.2, intensity);
+        logo.style.filter = `drop-shadow(0 0 30px rgba(255, 0, 0, ${glowOpacity}))`;
     }
 
-    // Start the glow animation
-    animateGlow();
+    // Start the pumping animation
+    animatePumpingEffect();
 });
+
 
 
 
