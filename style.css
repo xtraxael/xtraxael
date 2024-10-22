@@ -85,6 +85,8 @@ h1, p, img {
 /* Container to hold both the logo and the JOIN text */
 .content-wrapper {
     position: relative; /* Allow overlapping elements */
+    width: 900px; /* Adjust width to match the logo size */
+    height: 800px; /* Adjust height to match the logo size */
     display: flex;
     justify-content: center;
     align-items: center;
