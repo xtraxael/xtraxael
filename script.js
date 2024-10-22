@@ -275,8 +275,6 @@ document.querySelector(".signup-form h2").addEventListener("click", function () 
 
     
 // Global setup for the audio context, analyser, and source
-const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-const analyser = audioContext.createAnalyser();
 let audioSourceCreated = false; // Flag to check if the audio source is created
 
 // Add Cntrl.mp3 audio element on Page 2
@@ -291,6 +289,12 @@ if (!audioSourceCreated) {
     audioSourceCreated = true; // Set the flag to true
 }
 
+
+
+
+
+
+    
 // Add an event listener to the play button to play the audio
 playButtonPage2.addEventListener("click", function () {
     // Play the audio
@@ -303,9 +307,6 @@ playButtonPage2.addEventListener("click", function () {
 
     // Remove play button after starting audio
     document.body.removeChild(playButtonPage2);
-
-    // Remove the mousemove event listener to prevent mouse-based glow changes
-    document.removeEventListener('mousemove', mouseMoveListener);
 
     // Create the logo element and position it centrally on the canvas
     const logo = document.createElement("div");
@@ -363,6 +364,7 @@ playButtonPage2.addEventListener("click", function () {
     // Start the pumping animation
     animatePumpingEffect();
 });
+
 
 
 
