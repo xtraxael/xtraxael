@@ -55,7 +55,7 @@ document.querySelector(".signup-form h2").addEventListener("click", function () 
     document.body.style.backgroundColor = "red";
     document.body.innerHTML = "<h1>Welcome to the New Page!</h1><p>Thank you for joining us!</p>";
 
-    // Create an image for Cntrl.jpg
+    /* // Create an image for Cntrl.jpg
     const img = document.createElement("img");
     img.src = "Cntrl.jpg";
     img.alt = "Cntrl Image";
@@ -66,7 +66,7 @@ document.querySelector(".signup-form h2").addEventListener("click", function () 
     img.style.width = "300px";
     img.style.height = "auto";
     img.style.zIndex = "10000";
-    document.body.appendChild(img);
+    document.body.appendChild(img); */
 
     // Create a play button for Page 2
     const playButtonPage2 = document.createElement("button");
