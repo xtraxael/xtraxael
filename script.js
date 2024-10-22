@@ -337,7 +337,7 @@ playButtonPage2.addEventListener("click", function () {
 
     
     
-// Function to animate the pumping effect based on the audio data
+ // Function to animate the pumping effect based on the audio data
 function animatePumpingEffect() {
     requestAnimationFrame(animatePumpingEffect);
 
@@ -349,20 +349,12 @@ function animatePumpingEffect() {
     for (let i = 0; i < bufferLength; i++) {
         sum += dataArray[i];
     }
-    let averageFrequency = sum / bufferLength;
+    const averageFrequency = sum / bufferLength;
 
-    // Introduce a threshold to decrease sensitivity to lower audio signals
-    const threshold = 100; // Set the threshold value (0 - 255)
-    if (averageFrequency < threshold) {
-        averageFrequency = 0; // Ignore values below the threshold
-    }
-
-    // Decrease the sensitivity by scaling down the input signal
-    const scaledFrequency = averageFrequency / 512; // Dividing by a larger value makes it less sensitive
-    const targetIntensity = Math.min(1, scaledFrequency); // Normalize the intensity between 0 and 1
-
-    const growthFactor = 0.2; // How quickly the logo expands
-    const shrinkFactor = 0.9; // How aggressively the logo shrinks
+    // Smooth the intensity change
+    const targetIntensity = averageFrequency / 256; // Normalize the intensity between 0 and 1
+    const growthFactor = 0.7; // How quickly the logo expands (increase value to make it faster)
+    const shrinkFactor = 1.2; // How aggressively the logo shrinks (increase value to make it faster)
 
     // If the new intensity is higher, grow immediately. Otherwise, shrink more dramatically
     if (targetIntensity > currentIntensity) {
@@ -372,7 +364,7 @@ function animatePumpingEffect() {
     }
 
     // Calculate the scale intensity based on the smoothed intensity
-    const minScale = 1; // The normal size
+    const minScale = 0.6; // The normal size
     const maxScale = 1.3; // Maximum pulsing size
     const scale = minScale + (maxScale - minScale) * currentIntensity;
 
@@ -489,5 +481,6 @@ draw();
         });
     }
 });
+
 
 
