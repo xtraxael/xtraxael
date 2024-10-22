@@ -262,26 +262,41 @@ document.querySelector(".signup-form h2").addEventListener("click", function () 
     // Add Cntrl.mp3 audio element on Page 2
     const audio = new Audio("Cntrl.mp3");
     document.body.appendChild(audio);
-
-     // Add an event listener to the play button to play the audio
-    playButtonPage2.addEventListener("click", function () {
-        // Play the audio
-        audio.play().then(() => {
-            console.log("Playback started successfully.");
-        }).catch((error) => {
-            console.error("Playback failed:", error);
-            alert("Playback could not be started. Please ensure the page has been interacted with.");
-        });
+   
     
-        // Remove play button after starting audio
-        document.body.removeChild(playButtonPage2);
-    
-        // Create the logo element and apply the fade-in effect
-        const logo = document.createElement("div");
-        logo.id = "logo";
-        logo.classList.add("geeks", "fade-in"); // Add fade-in animation class
-        document.body.appendChild(logo);
+// Add an event listener to the play button to play the audio
+playButtonPage2.addEventListener("click", function () {
+    // Play the audio
+    audio.play().then(() => {
+        console.log("Playback started successfully.");
+    }).catch((error) => {
+        console.error("Playback failed:", error);
+        alert("Playback could not be started. Please ensure the page has been interacted with.");
     });
+
+    // Remove play button after starting audio
+    document.body.removeChild(playButtonPage2);
+
+    // Create the logo element and position it centrally on the canvas
+    const logo = document.createElement("div");
+    logo.id = "logo";
+    logo.classList.add("geeks", "fade-in"); // Add fade-in animation class
+
+    // Position the logo to be centered over the canvas
+    const canvas = document.getElementById('audio-visualizer');
+    const canvasRect = canvas.getBoundingClientRect();
+
+    // Set the styles for the logo to position it at the center of the canvas
+    logo.style.position = "absolute";
+    logo.style.top = `${canvasRect.top + window.scrollY + canvasRect.height / 2 - 400}px`; // Adjust to center vertically based on logo height (assuming 800px height)
+    logo.style.left = `${canvasRect.left + window.scrollX + canvasRect.width / 2 - 450}px`; // Adjust to center horizontally based on logo width (assuming 900px width)
+    logo.style.transform = "translate(-50%, -50%)";
+    logo.style.zIndex = "10001"; // Ensure it's above other elements
+
+    document.body.appendChild(logo);
+}); 
+
+    
     // Setup visualizer for Cntrl.mp3
     const canvas = document.createElement("canvas");
     canvas.id = "audio-visualizer";
