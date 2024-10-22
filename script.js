@@ -364,7 +364,7 @@ function animatePumpingEffect() {
     }
 
     // Calculate the scale intensity based on the smoothed intensity
-    const minScale = 1; // The normal size
+    const minScale = 0.6; // The normal size
     const maxScale = 1.3; // Maximum pulsing size
     const scale = minScale + (maxScale - minScale) * currentIntensity;
 
