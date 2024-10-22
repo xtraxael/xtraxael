@@ -407,44 +407,48 @@ playButtonPage2.addEventListener("click", function () {
     const dataArray = new Uint8Array(bufferLength);
 
 
-    function draw() {
-        requestAnimationFrame(draw);
-    
-        // Get time domain data for drawing the waveform
-        analyser.getByteTimeDomainData(dataArray);
-    
-        // Clear the canvas
-        ctx.fillStyle = "black";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
-        // Draw the waveform
-        ctx.lineWidth = 2;
-        ctx.strokeStyle = "red";
-        ctx.beginPath();
-    
-        const sliceWidth = canvas.width / bufferLength; // Calculate width of each segment based on the buffer length
-        let x = 0;
-    
-        for (let i = 0; i < bufferLength; i++) {
-            const v = dataArray[i] / 128.0; // Normalize the data value
-            const y = (v * canvas.height) / 2; // Scale the Y value to fit the canvas height
-    
-            if (i === 0) {
-                ctx.moveTo(x, y);
-            } else {
-                ctx.lineTo(x, y);
-            }
-    
-            x += sliceWidth; // Increment X based on slice width to spread the segments evenly across the canvas
-        }
-    
-        ctx.lineTo(canvas.width, canvas.height / 2); // Complete the path
-        ctx.stroke();
-    }
-    
-    // Start drawing the visualizer
-    draw();
 
+
+    
+
+function draw() {
+    requestAnimationFrame(draw);
+
+    // Get time domain data for drawing the waveform
+    analyser.getByteTimeDomainData(dataArray);
+
+    // Clear the canvas
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw the waveform
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "red";
+    ctx.beginPath();
+
+    // Calculate width of each segment based on the canvas width and buffer length
+    const sliceWidth = canvas.width / bufferLength;
+    let x = 0;
+
+    for (let i = 0; i < bufferLength; i++) {
+        const v = dataArray[i] / 128.0; // Normalize the data value between 0 and 2
+        const y = (v * canvas.height) / 2; // Scale Y to fit the canvas height
+
+        if (i === 0) {
+            ctx.moveTo(x, y);
+        } else {
+            ctx.lineTo(x, y);
+        }
+
+        x += sliceWidth; // Increment X to spread the segments evenly
+    }
+
+    ctx.lineTo(canvas.width, canvas.height / 2); // Complete the path
+    ctx.stroke();
+}
+
+// Start drawing the visualizer
+draw();    
 
     // Part 1: Ensure backAudio continues playing on Page 2 if it wasn't already playing
     if (backAudio.paused) {
