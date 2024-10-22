@@ -63,6 +63,13 @@ h1, p, img {
     align-items: center;
 }
 
+/* Optional: Add a transition for fading out the "Join" text */
+.signup-form h2 {
+    transition: opacity 0.5s ease;
+    z-index: 201; /* Ensure the "Join" text is also on top */
+    color: black; /* Set text color to black */
+}
+
 /* Container to hold both the logo and the sign-up form */
 .content-wrapper {
     position: relative; /* Allow overlapping elements */
