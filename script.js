@@ -332,8 +332,8 @@ playButtonPage2.addEventListener("click", function () {
         const glowOpacity = Math.max(0, intensity);
         const blurAmount = maxBlur * intensity;
 
-        // Update the logo's style based on the calculated intensity
-        logo.style.filter = `drop-shadow(0 0 ${glowSize}px rgba(255, 255, 255, ${glowOpacity})) blur(${blurAmount}px)`;
+        // Update the logo's style based on the calculated intensity, with red color
+        logo.style.filter = `drop-shadow(0 0 ${glowSize}px rgba(255, 0, 0, ${glowOpacity})) blur(${blurAmount}px)`;
     }
 
     // Start the glow animation
