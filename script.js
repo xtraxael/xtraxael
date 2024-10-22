@@ -368,7 +368,7 @@ playButtonPage2.addEventListener("click", function () {
 
     
     
-    // Setup visualizer for Cntrl.mp3
+// Setup visualizer for Cntrl.mp3
     const canvas = document.createElement("canvas");
     canvas.id = "audio-visualizer";
     canvas.width = window.innerWidth; // Set canvas dimensions as required
@@ -419,6 +419,7 @@ playButtonPage2.addEventListener("click", function () {
             console.error("Audio playback failed:", error);
         });
     }
+});
 
 
 
