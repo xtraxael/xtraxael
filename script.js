@@ -255,26 +255,27 @@ document.querySelector(".signup-form h2").addEventListener("click", function () 
     playButtonPage2.style.padding = "15px 30px";
     playButtonPage2.style.fontSize = "20px";
     playButtonPage2.style.zIndex = "10001";
-    document.body.appendChild(playButtonPage2);
-
-    // Add Cntrl.mp3 audio element on Page 2
-    const audio = new Audio("Cntrl.mp3");
-    document.body.appendChild(audio);
-
-
-
-
-
-
-
+    document.body.appendChild(playButtonPage2);    
 
     
+// Global setup for the audio context, analyser, and source
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+const analyser = audioContext.createAnalyser();
+let audioSourceCreated = false; // Flag to check if the audio source is created
 
+// Add Cntrl.mp3 audio element on Page 2
+const audio = new Audio("Cntrl.mp3");
+document.body.appendChild(audio);
 
+// Create audio source only once
+if (!audioSourceCreated) {
+    const source = audioContext.createMediaElementSource(audio);
+    source.connect(analyser);
+    analyser.connect(audioContext.destination);
+    audioSourceCreated = true; // Set the flag to true
+}
 
 // Add an event listener to the play button to play the audio
-let audioSourceCreated = false; // Flag to check if audio source is created
-
 playButtonPage2.addEventListener("click", function () {
     // Play the audio
     audio.play().then(() => {
@@ -305,19 +306,9 @@ playButtonPage2.addEventListener("click", function () {
     logo.style.zIndex = "10001";
     document.body.appendChild(logo);
 
-    // Setup audio analyser for visual effects only once
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    let analyser;
-
-    if (!audioSourceCreated) {
-        const source = audioContext.createMediaElementSource(audio);
-        analyser = audioContext.createAnalyser();
-        source.connect(analyser);
-        analyser.connect(audioContext.destination);
-        audioSourceCreated = true; // Set flag to true to indicate that the audio source is created
-    }
-
+    // Set FFT size for the analyser
     analyser.fftSize = 256;
+
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
 
@@ -356,6 +347,7 @@ playButtonPage2.addEventListener("click", function () {
     // Start the pumping animation
     animatePumpingEffect();
 });
+
 
 
 
