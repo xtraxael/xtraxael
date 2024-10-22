@@ -199,27 +199,28 @@ document.addEventListener("DOMContentLoaded", function () {
     const bufferLength = analyser.frequencyBinCount; // Number of data points
     const dataArray = new Uint8Array(bufferLength);
 
-    // Step 3: Play audio on interaction (due to autoplay restrictions)
-    const playButton = document.createElement("button");
-    playButton.textContent = "Play Audio";
-    playButton.style.position = "absolute";
-    playButton.style.top = "60%";
-    playButton.style.left = "50%";
-    playButton.style.transform = "translate(-50%, -50%)";
-    playButton.style.padding = "15px 30px";
-    playButton.style.fontSize = "20px";
-
-    document.body.appendChild(playButton);
-
-    playButton.addEventListener("click", function () {
+       // Step 3: Play audio on interaction (due to autoplay restrictions)
+    const playButtonPage2 = document.createElement("button");
+    playButtonPage2.textContent = "Play Audio";
+    playButtonPage2.style.position = "absolute";
+    playButtonPage2.style.top = "60%";
+    playButtonPage2.style.left = "50%";
+    playButtonPage2.style.transform = "translate(-50%, -50%)";
+    playButtonPage2.style.padding = "15px 30px";
+    playButtonPage2.style.fontSize = "20px";
+    
+    document.body.appendChild(playButtonPage2);
+    
+    playButtonPage2.addEventListener("click", function () {
         if (audioContext.state === "suspended") {
             audioContext.resume();
         }
         audio.play().catch((error) => {
             console.error("Audio playback failed:", error);
         });
-        document.body.removeChild(playButton); // Remove play button after starting audio
+        document.body.removeChild(playButtonPage2); // Remove play button after starting audio
     });
+
 
     // Step 4: Draw the visualizer
     function draw() {
