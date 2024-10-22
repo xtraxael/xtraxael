@@ -5,7 +5,7 @@ backAudio.loop = true; // Loop the audio
 backAudio.volume = 0.0; // Start with imperceptible volume
 
 
-
+// BEGINNING OF SIGN UP FORM DATA COLLECTOR //
 
 document.addEventListener('DOMContentLoaded', () => {
     const signupForm = document.getElementById('signup-form');
