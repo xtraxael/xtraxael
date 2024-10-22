@@ -98,8 +98,8 @@ document.querySelector(".signup-form h2").addEventListener("click", function () 
     // Setup visualizer for Cntrl.mp3
     const canvas = document.createElement("canvas");
     canvas.id = "audio-visualizer";
-    canvas.width = 800; // Set canvas dimensions as required
-    canvas.height = 200;
+    canvas.width = window.innerWidth; // Set canvas dimensions as required
+    canvas.height = 800;
     document.body.appendChild(canvas);
 
     const ctx = canvas.getContext("2d");
