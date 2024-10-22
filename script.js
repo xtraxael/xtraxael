@@ -269,7 +269,7 @@ document.querySelector(".signup-form h2").addEventListener("click", function () 
 
 
 
-    // Add an event listener to the play button to play the audio
+// Add an event listener to the play button to play the audio
 playButtonPage2.addEventListener("click", function () {
     // Play the audio
     audio.play().then(() => {
@@ -290,16 +290,56 @@ playButtonPage2.addEventListener("click", function () {
     // Position the logo to be centered on the canvas
     const canvas = document.getElementById('audio-visualizer');
     const canvasRect = canvas.getBoundingClientRect();
-
-    // Set the styles for the logo to position it at the center of the canvas
     logo.style.position = "absolute";
-    logo.style.top = `${canvasRect.top + window.scrollY + canvasRect.height / 2}px`; // Center vertically within the canvas
-    logo.style.left = `${canvasRect.left + window.scrollX + canvasRect.width / 2}px`; // Center horizontally within the canvas
-    logo.style.transform = "translate(-50%, -50%)"; // Adjust to ensure perfect centering
-    logo.style.zIndex = "10001"; // Ensure it's above other elements
-
+    logo.style.top = `${canvasRect.top + window.scrollY + canvasRect.height / 2}px`;
+    logo.style.left = `${canvasRect.left + window.scrollX + canvasRect.width / 2}px`;
+    logo.style.transform = "translate(-50%, -50%)";
+    logo.style.zIndex = "10001";
     document.body.appendChild(logo);
+
+    // Setup audio analyser for visual effects
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const analyser = audioContext.createAnalyser();
+    const source = audioContext.createMediaElementSource(audio);
+    source.connect(analyser);
+    analyser.connect(audioContext.destination);
+    analyser.fftSize = 256;
+
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+
+    // Function to animate the glow effect based on the audio data
+    function animateGlow() {
+        requestAnimationFrame(animateGlow);
+        
+        // Get frequency data from the analyser
+        analyser.getByteFrequencyData(dataArray);
+
+        // Calculate the average value of the frequency data to determine the intensity
+        let sum = 0;
+        for (let i = 0; i < bufferLength; i++) {
+            sum += dataArray[i];
+        }
+        const averageFrequency = sum / bufferLength;
+
+        // Calculate the intensity of the glow effect based on the average frequency
+        const maxGlowSize = 150; // Maximum size of the glow in pixels
+        const maxBlur = 10; // Maximum blur amount in pixels
+
+        const intensity = averageFrequency / 256; // Normalize the intensity between 0 and 1
+
+        const glowSize = maxGlowSize * intensity;
+        const glowOpacity = Math.max(0, intensity);
+        const blurAmount = maxBlur * intensity;
+
+        // Update the logo's style based on the calculated intensity
+        logo.style.filter = `drop-shadow(0 0 ${glowSize}px rgba(255, 255, 255, ${glowOpacity})) blur(${blurAmount}px)`;
+    }
+
+    // Start the glow animation
+    animateGlow();
 });
+
 
 
 
