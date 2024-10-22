@@ -43,7 +43,7 @@ h1, p, img {
     z-index: 10000; /* Ensure these are always above other elements */
 }
 
-/* Menu styles */
+/* Adjust menu styles to include signup form */
 .menu {
     position: fixed;
     bottom: 0; /* Aligns the menu to the bottom of the page */
@@ -54,121 +54,52 @@ h1, p, img {
     align-items: center;
     z-index: 2000; /* Ensures menu is above all background layers and content */
     padding: 10px 0; /* Add padding at the top and bottom */
-    background-color: rgba(0, 0, 0, 0.7); /* Optional: Adds a transparent background to make the menu more visible */
+    background-color: rgba(0, 0, 0, 0.7); /* Adds a transparent background to make the menu more visible */
+    gap: 20px; /* Adds spacing between elements */
 }
 
-/* Style the individual links inside the menu */
-.menu a {
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-    margin: 0 10px; /* Add horizontal spacing between items */
-    font-size: 20px;
-}
-
-/* Container to hold both the logo and the sign-up form */
-.content-wrapper {
-    position: relative; /* Allow overlapping elements */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column; /* Stack logo and sign-up form vertically */
-    margin-top: 200px; /* Add margin at the top to move everything down */
-}
-
-/* Center the logo using Flexbox */
-.geeks {
-    width: 900px; /* Adjust logo size if needed */
-    height: 800px;
-    background: url('Logo.png') no-repeat center center;
-    background-size: contain;
-    z-index: 200; /* Adjust this based on whether the logo is above or below the form */
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
-    margin-bottom: -470px; /* Negative margin to create overlap with the form */
-}
-
-/* Center the sign-up form using Flexbox */
-.signup-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full viewport height to center vertically */
-    margin: 0;
-    margin-bottom: 160px; /* Negative margin to create overlap with the form */
-}
-
-/* Style for the sign-up form */
 .signup-form {
-    position: relative; /* Ensures the form stays within the container */
-    max-width: 400px;
-    padding: 20px;
-    text-align: center;
-    z-index: 200; /* Adjust if you want the form above or below the logo */
+    display: flex;
+    align-items: center;
 }
 
-/* Hide the form initially */
-.signup-form form {
-    opacity: 0; /* Initially invisible */
-    visibility: hidden; /* Ensure it's not visible */
-    transition: opacity 0.5s ease, visibility 0.5s ease; /* Smooth fade-in */
-}
-
-/* Class to show the email form (applied via JavaScript) */
-.show-form form {
-    opacity: 1; /* Fully visible */
-    visibility: visible; /* Make it visible */
-}
-
-
-/* Optional: Add a transition for fading out the "Join" text */
-.signup-form h2 {
-    transition: opacity 0.5s ease;
-    z-index: 201; /* Ensure the "Join" text is also on top */
-    color: black; /* Set text color to black */
-}
-
-
-
-/* Style for the input fields inside the form */
 .signup-form input[type="email"] {
-    width: 220%; /* Full width inside form */
-    padding: 15px;
-    margin-bottom: 10px;
-    margin-top: 10px; /* Adjust to move the input field up */
-    margin-left: -110px; /* Move the input field to the left */
-    text-align: center; /* Center text horizontally */
+    width: 200px; /* Adjust width as needed */
+    padding: 10px;
+    text-align: center;
     border: none;
-    border-radius: 50% !important; /* Oval shape */
+    border-radius: 20px; /* Rounded corners for the input */
     background-color: rgba(255, 0, 72, 0.9); /* Red background with some transparency */
     color: white;
     font-size: 16px;
-    box-shadow: 0 0 100px 100px rgba(255, 0, 72, 0.9); /* More intense blur */
+    margin-right: 10px; /* Space between input field and submit button */
     outline: none;
 }
 
-  
 .signup-form input[type="submit"] {
- width: 40%; /* Adjust width as needed */
-    padding: 15px;
+    width: 40px; /* Adjust width as needed */
+    padding: 10px;
     border: none;
     border-radius: 50%; /* Rounded button */
-    text-align: center; /* Center text horizontally */
+    text-align: center;
     cursor: pointer;
-    box-shadow: none; /* Remove any blur from the submit button */
+    background-color: #0056b3; /* Set initial button color */
+    color: white;
     outline: none;
 }
 
-/* Style for the submit button hover effect */
+/* Hover effect for the submit button */
 .signup-form input[type="submit"]:hover {
-    background-color: #0056b3; /* Change color on hover */
+    background-color: #004080; /* Darker blue when hovered */
 }
 
-/* Style for placeholder text */
+/* Placeholder style */
 .signup-form input[type="email"]::placeholder {
     color: #ffffff; /* Set placeholder text color */
     opacity: 1; /* Ensure full opacity */
-    font-size: 18px; /* Set the font size for the placeholder */
+    font-size: 16px;
 }
+
 
 /* Ensure everything is above the background */
 * {
