@@ -76,7 +76,7 @@ h1, p, img {
     justify-content: center;
     align-items: center;
     flex-direction: column; /* Stack logo and JOIN text vertically */
-    margin-top: 20px; /* Adjust margin as needed to position the logo */
+    margin-top: 5px; /* Adjust margin as needed to position the logo */
     gap: 10px; /* Adjust spacing between the logo and "JOIN" text */
 }
 
