@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const blurAmount = maxBlur * (1 - intensity);
 
         // Update the logo's style based on the calculated intensity and blur
-        logo.style.filter = `drop-shadow(0 0 ${glowSize}px rgba(255, 255, 255, ${glowOpacity})) blur(${blurAmount}px)`;
+        logo.style.filter = `drop-shadow(0 0 ${glowSize}px rgba(255, 0, 0, ${glowOpacity})) blur(${blurAmount}px)`;
 
         // Update volume of back1.mp3 based on the mouse distance
         const volumeMultiplier = 1.5; // Adjust if needed
