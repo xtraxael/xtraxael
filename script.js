@@ -273,6 +273,8 @@ document.querySelector(".signup-form h2").addEventListener("click", function () 
 
 
 // Add an event listener to the play button to play the audio
+let audioSourceCreated = false; // Flag to check if audio source is created
+
 playButtonPage2.addEventListener("click", function () {
     // Play the audio
     audio.play().then(() => {
@@ -303,14 +305,19 @@ playButtonPage2.addEventListener("click", function () {
     logo.style.zIndex = "10001";
     document.body.appendChild(logo);
 
-    // Setup audio analyser for visual effects
+    // Setup audio analyser for visual effects only once
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    const analyser = audioContext.createAnalyser();
-    const source = audioContext.createMediaElementSource(audio);
-    source.connect(analyser);
-    analyser.connect(audioContext.destination);
-    analyser.fftSize = 256;
+    let analyser;
 
+    if (!audioSourceCreated) {
+        const source = audioContext.createMediaElementSource(audio);
+        analyser = audioContext.createAnalyser();
+        source.connect(analyser);
+        analyser.connect(audioContext.destination);
+        audioSourceCreated = true; // Set flag to true to indicate that the audio source is created
+    }
+
+    analyser.fftSize = 256;
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
 
@@ -349,7 +356,6 @@ playButtonPage2.addEventListener("click", function () {
     // Start the pumping animation
     animatePumpingEffect();
 });
-
 
 
 
