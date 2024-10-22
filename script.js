@@ -99,7 +99,7 @@ document.querySelector(".signup-form h2").addEventListener("click", function () 
     const canvas = document.createElement("canvas");
     canvas.id = "audio-visualizer";
     canvas.width = window.innerWidth; // Set canvas dimensions as required
-    canvas.height = 800;
+    canvas.height = window.innerHeight;
     document.body.appendChild(canvas);
 
     const ctx = canvas.getContext("2d");
