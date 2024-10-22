@@ -12,10 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const joinText = document.querySelector('.signup-form h2');
     const formContainer = document.querySelector('.signup-form form');
 
-    backAudio = new Audio('back1.mp3'); // Initialize backAudio
-    backAudio.loop = true; // Loop the audio so it plays continuously
-    backAudio.volume = 0.0; // Set the initial volume to imperceptible (essentially muted)
-
     // Add click event listener to "Join" text
     joinText.addEventListener('mousemove', function() {
         // Fade out "Join" text
@@ -54,7 +50,6 @@ document.querySelector(".signup-form h2").addEventListener("click", function () 
     document.body.innerHTML = ""; 
     document.body.style.backgroundColor = "red";
     document.body.innerHTML = "<h1>Welcome to the New Page!</h1><p>Thank you for joining us!</p>";
-
     /* // Create an image for Cntrl.jpg
     const img = document.createElement("img");
     img.src = "Cntrl.jpg";
@@ -138,5 +133,46 @@ document.querySelector(".signup-form h2").addEventListener("click", function () 
     }
 
     draw(); // Start drawing the visualizer
+
+    // Part 1: Ensure backAudio continues playing on Page 2 if it wasn't already playing
+    if (backAudio.paused) {
+        backAudio.play().catch((error) => {
+            console.error("Audio playback failed:", error);
+        });
+    }
+
+    // Part 2: Reattach mousemove event listener for glow effect and volume adjustment of backAudio
+    document.addEventListener('mousemove', function (e) {
+        if (!backAudio) {
+            return; // Ensure backAudio is initialized
+        }
+
+        const logo = document.getElementById('logo'); // Ensure you have the correct element if it exists on Page 2
+
+        if (!logo) {
+            return;  // Stop execution if logo is not found
+        }
+
+        const rect = logo.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        // Calculate distance from the center of the logo to the mouse cursor
+        const distance = Math.sqrt(Math.pow(centerX - e.clientX, 2) + Math.pow(centerY - e.clientY, 2));
+        const maxDistance = 900;
+        const maxGlowSize = 150;
+        const maxBlur = 10;
+        const intensity = Math.max(0, 1 - Math.pow(distance / maxDistance, 2));
+
+        // Update glow effect
+        const glowSize = maxGlowSize * intensity;
+        const glowOpacity = Math.max(0, intensity);
+        const blurAmount = maxBlur * (1 - intensity);
+        logo.style.filter = `drop-shadow(0 0 ${glowSize}px rgba(255, 255, 255, ${glowOpacity})) blur(${blurAmount}px)`;
+
+        // Update volume of back1.mp3
+        const volumeMultiplier = 1.5; // Adjust if needed
+        backAudio.volume = Math.min(1, Math.pow(intensity, 3) * volumeMultiplier);
+    });
 });
 
