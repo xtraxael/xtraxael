@@ -52,7 +52,7 @@ h1, p, img {
     display: flex;
     justify-content: center; /* Center the menu items horizontally */
     align-items: center;
-    z-index: 300; /* Ensures menu is above all background layers and content */
+    z-index: 2000; /* Ensures menu is above all background layers and content */
     padding: 10px 0; /* Add padding at the top and bottom */
     background-color: rgba(0, 0, 0, 0.7); /* Optional: Adds a transparent background to make the menu more visible */
 }
