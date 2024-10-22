@@ -337,7 +337,7 @@ playButtonPage2.addEventListener("click", function () {
 
     
     
-    // Function to animate the pumping effect based on the audio data
+ // Function to animate the pumping effect based on the audio data
 function animatePumpingEffect() {
     requestAnimationFrame(animatePumpingEffect);
 
@@ -353,13 +353,14 @@ function animatePumpingEffect() {
 
     // Smooth the intensity change
     const targetIntensity = averageFrequency / 256; // Normalize the intensity between 0 and 1
-    const smoothFactor = 0.05; // Adjust this value for faster or slower recovery (0.01 to 0.1 works well)
-    
-    // Gradually adjust the current intensity to the target intensity
+    const growthFactor = 0.2; // How quickly the logo expands (increase value to make it faster)
+    const shrinkFactor = 0.9; // How aggressively the logo shrinks (increase value to make it faster)
+
+    // If the new intensity is higher, grow immediately. Otherwise, shrink more dramatically
     if (targetIntensity > currentIntensity) {
-        currentIntensity = targetIntensity; // Immediately set to the new intensity if it's higher
+        currentIntensity += (targetIntensity - currentIntensity) * growthFactor;
     } else {
-        currentIntensity += (targetIntensity - currentIntensity) * smoothFactor; // Smoothly reduce intensity over time
+        currentIntensity += (targetIntensity - currentIntensity) * shrinkFactor; // Shrink faster
     }
 
     // Calculate the scale intensity based on the smoothed intensity
@@ -379,6 +380,10 @@ function animatePumpingEffect() {
     logo.style.filter = `drop-shadow(0 0 30px rgba(255, 0, 0, ${glowOpacity}))`;
 }
 
+
+
+
+    
 
     // Start the pumping animation
     animatePumpingEffect();
