@@ -240,26 +240,6 @@ document.addEventListener('DOMContentLoaded', function() {
         backAudio.volume = Math.min(1, Math.pow(intensity, 3) * volumeMultiplier);
     });
 
-
-
-document.getElementById("email-form").addEventListener("submit", function(e) {
-    e.preventDefault(); // Prevent default form submission
-
-    const email = document.getElementById("email").value;
-    if (email) {
-        // Retrieve any existing emails from localStorage or create a new array if none exist
-        let emails = localStorage.getItem("emails") ? JSON.parse(localStorage.getItem("emails")) : [];
-        emails.push(email); // Add new email to the array
-        localStorage.setItem("emails", JSON.stringify(emails)); // Save updated email list to localStorage
-
-        // Notify the user or console log the stored emails
-        alert("Email collected: " + email);
-        console.log("Collected emails: ", emails);
-    } else {
-        alert("Please enter a valid email.");
-    }
-});
-
 /* New Page */
 document.querySelector(".signup-form h2").addEventListener("click", function () {
     // Clear existing content and set up Page 2
