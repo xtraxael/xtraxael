@@ -64,8 +64,12 @@ h1, p, img {
 
 /* Optional: Add a transition for fading out the "JOIN" text */
 .signup-form h2 {
-    transition: opacity 0.5s ease;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Move to the center of the logo */
     color: white; /* Set text color to white for better contrast */
+    z-index: 201; /* Ensure the JOIN text is above the logo */
     margin: 0; /* Remove any extra margin */
 }
 
