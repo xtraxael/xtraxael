@@ -120,7 +120,6 @@ document.querySelector(".signup-form h2").addEventListener("click", function() {
             alert("Playback could not be started. Please ensure the page has been interacted with.");
         });
     });
-});
 
 // CONSOLIDATED MOUSE MOVE // ------------------------------------------------------
 
