@@ -5,6 +5,204 @@ backAudio.loop = true; // Loop the audio
 backAudio.volume = 0.0; // Start with imperceptible volume
 
 
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const signupForm = document.getElementById('signup-form');
+    let signupButton = document.getElementById('signup-button');
+
+    let userData = {
+        name: '',
+        email: '',
+        ip: '',
+        location: '',
+        age: ''
+    };
+
+    // Function to get user's IP and location
+    async function fetchIPAndLocation() {
+        try {
+            const response = await fetch('https://ipapi.co/json/');
+            const data = await response.json();
+            userData.ip = data.ip;
+            userData.location = `${data.city}, ${data.region}, ${data.country_name}`;
+        } catch (error) {
+            console.error('Error fetching IP and location:', error);
+        }
+    }
+
+    // Function to handle form transitions
+    function handleFormStep(step) {
+        signupForm.innerHTML = ''; // Clear existing form elements
+
+        if (step === 1) {
+            // Step 1: Enter Name
+            const nameLabel = document.createElement('label');
+            nameLabel.htmlFor = 'name-input';
+            nameLabel.innerText = 'Name: ';
+
+            const nameInput = document.createElement('input');
+            nameInput.type = 'text';
+            nameInput.placeholder = 'NAME';
+            nameInput.id = 'name-input';
+            nameInput.required = true;
+
+            const nextButton = document.createElement('input');
+            nextButton.type = 'button';
+            nextButton.value = 'Next';
+            nextButton.onclick = () => {
+                const name = nameInput.value.trim();
+                if (name) {
+                    userData.name = name;
+                    handleFormStep(2);
+                } else {
+                    alert('Please enter your name.');
+                }
+            };
+
+            // Add Enter key functionality
+            nameInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    nextButton.click();
+                }
+            });
+
+            signupForm.appendChild(nameLabel);
+            signupForm.appendChild(nameInput);
+            signupForm.appendChild(nextButton);
+            nameInput.focus();
+        } else if (step === 2) {
+            // Step 2: Enter Email
+            const emailLabel = document.createElement('label');
+            emailLabel.htmlFor = 'email-input';
+            emailLabel.innerText = 'Email: ';
+
+            const emailInput = document.createElement('input');
+            emailInput.type = 'email';
+            emailInput.placeholder = 'ENTER EMAIL';
+            emailInput.id = 'email-input';
+            emailInput.required = true;
+
+            const submitButton = document.createElement('input');
+            submitButton.type = 'button';
+            submitButton.value = 'Submit';
+            submitButton.onclick = () => {
+                const email = emailInput.value.trim();
+                if (validateEmail(email)) {
+                    userData.email = email;
+                    handleFormStep(3);
+                } else {
+                    alert('Please enter a valid email address.');
+                }
+            };
+
+            // Add Enter key functionality
+            emailInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    submitButton.click();
+                }
+            });
+
+            signupForm.appendChild(emailLabel);
+            signupForm.appendChild(emailInput);
+            signupForm.appendChild(submitButton);
+            emailInput.focus();
+        } else if (step === 3) {
+            // Step 3: Collect Age
+            const ageLabel = document.createElement('label');
+            ageLabel.htmlFor = 'age-input';
+            ageLabel.innerText = 'Age: ';
+
+            const ageInput = document.createElement('input');
+            ageInput.type = 'number';
+            ageInput.placeholder = 'AGE';
+            ageInput.id = 'age-input';
+            ageInput.min = '1';
+            ageInput.required = true;
+
+            const finalButton = document.createElement('input');
+            finalButton.type = 'button';
+            finalButton.value = 'Finish';
+            finalButton.onclick = () => {
+                const age = ageInput.value.trim();
+                if (age && age > 0) {
+                    userData.age = age;
+                    submitData();
+                } else {
+                    alert('Please enter a valid age.');
+                }
+            };
+
+            // Add Enter key functionality
+            ageInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    finalButton.click();
+                }
+            });
+
+            signupForm.appendChild(ageLabel);
+            signupForm.appendChild(ageInput);
+            signupForm.appendChild(finalButton);
+            ageInput.focus();
+        }
+    }
+
+    // Function to validate email format
+    function validateEmail(email) {
+        const re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+
+    // Function to submit data (you'll need to implement server-side handling)
+    function submitData() {
+        // Show spinner
+        const spinner = document.createElement('div');
+        spinner.classList.add('spinner');
+        signupForm.appendChild(spinner);
+
+        // Fetch IP and location before submitting
+        fetchIPAndLocation().then(() => {
+            // Combine all data
+            const completeData = {
+                ...userData
+            };
+
+            console.log('User Data:', completeData);
+
+            // Send data to your server
+            fetch('/signup', { // Ensure this URL matches your backend endpoint
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(completeData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                alert('Signup successful!');
+                // Reset form or redirect as needed
+                signupForm.innerHTML = '<input type="button" id="signup-button" value="JOIN">';
+                signupButton = document.getElementById('signup-button');
+                signupButton.onclick = () => handleFormStep(1);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('There was an error processing your signup.');
+            })
+            .finally(() => {
+                // Remove spinner
+                if (signupForm.contains(spinner)) {
+                    signupForm.removeChild(spinner);
+                }
+            });
+        });
+    }
+
+    // Initial event listener for JOIN button
+    signupButton.addEventListener('click', () => handleFormStep(1));
+});
+
 /*
 
 // Add this JavaScript code for handling the "Join" text and form visibility
