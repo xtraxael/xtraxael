@@ -78,7 +78,7 @@ h1, p, img {
     left: 50%;
     transform: translate(-50%, -50%) !important; /* Center the text in the middle of the logo */
     color: white; /* Set text color to white for better contrast */
-    z-index: 201; /* Ensure the JOIN text is above the logo */
+    z-index: 400; /* Ensure the JOIN text is above the logo */
     margin: 0; /* Remove any extra margin */
     pointer-events: none; /* Ensures click events pass through to the underlying logo */
 }
