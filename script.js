@@ -245,19 +245,7 @@ document.querySelector(".signup-form h2").addEventListener("click", function () 
     // Clear existing content and set up Page 2
     document.body.innerHTML = ""; 
     document.body.style.backgroundColor = "red";
-    document.body.innerHTML = "<h1>Welcome to the New Page!</h1><p>Thank you for joining us!</p>";
-    /* // Create an image for Cntrl.jpg
-    const img = document.createElement("img");
-    img.src = "Cntrl.jpg";
-    img.alt = "Cntrl Image";
-    img.style.position = "absolute";
-    img.style.left = "0";
-    img.style.top = "50%";
-    img.style.transform = "translateY(-50%)";
-    img.style.width = "300px";
-    img.style.height = "auto";
-    img.style.zIndex = "10000";
-    document.body.appendChild(img); */
+    document.body.style.background = "black"; 
 
     // Create a play button for Page 2
     const playButtonPage2 = document.createElement("button");
