@@ -172,12 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-
-
-
-    
-
     // Initial event listener for JOIN button
     signupButton.addEventListener('click', () => handleFormStep(1));
 });
@@ -203,42 +197,46 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 }); */
 
-// Add mousemove event listener to handle both glow effect and volume adjustment for backAudio
-    document.addEventListener('mousemove', function (e) {
-        const logo = document.getElementById('logo');
+// Store the event listener in a variable to remove it later
+const mouseMoveListener = function (e) {
+    const logo = document.getElementById('logo');
 
-        // Ensure backAudio and logo are initialized
-        if (!backAudio || !logo) {
-            return;
-        }
+    // Ensure backAudio and logo are initialized
+    if (!backAudio || !logo) {
+        return;
+    }
 
-        const rect = logo.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
+    const rect = logo.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
 
-        // Calculate distance from the center of the logo to the mouse cursor
-        const distance = Math.sqrt(Math.pow(centerX - e.clientX, 2) + Math.pow(centerY - e.clientY, 2));
+    // Calculate distance from the center of the logo to the mouse cursor
+    const distance = Math.sqrt(Math.pow(centerX - e.clientX, 2) + Math.pow(centerY - e.clientY, 2));
 
-        // Define the maximum effect distance and maximum values for effects
-        const maxDistance = 900; // Maximum distance at which the effects are visible
-        const maxGlowSize = 150; // Maximum size of the glow in pixels
-        const maxBlur = 10; // Maximum blur amount in pixels
+    // Define the maximum effect distance and maximum values for effects
+    const maxDistance = 900; // Maximum distance at which the effects are visible
+    const maxGlowSize = 150; // Maximum size of the glow in pixels
+    const maxBlur = 10; // Maximum blur amount in pixels
 
-        // Calculate intensity based on distance
-        const intensity = Math.max(0, 1 - Math.pow(distance / maxDistance, 2));
+    // Calculate intensity based on distance
+    const intensity = Math.max(0, 1 - Math.pow(distance / maxDistance, 2));
 
-        // Calculate glow size and opacity
-        const glowSize = maxGlowSize * intensity;
-        const glowOpacity = Math.max(0, intensity);
-        const blurAmount = maxBlur * (1 - intensity);
+    // Calculate glow size and opacity
+    const glowSize = maxGlowSize * intensity;
+    const glowOpacity = Math.max(0, intensity);
+    const blurAmount = maxBlur * (1 - intensity);
 
-        // Update the logo's style based on the calculated intensity and blur
-        logo.style.filter = `drop-shadow(0 0 ${glowSize}px rgba(255, 255, 255, ${glowOpacity})) blur(${blurAmount}px)`;
+    // Update the logo's style based on the calculated intensity and blur
+    logo.style.filter = `drop-shadow(0 0 ${glowSize}px rgba(255, 255, 255, ${glowOpacity})) blur(${blurAmount}px)`;
 
-        // Update volume of back1.mp3 based on the mouse distance
-        const volumeMultiplier = 1.5; // Adjust if needed
-        backAudio.volume = Math.min(1, Math.pow(intensity, 3) * volumeMultiplier);
-    });
+    // Update volume of back1.mp3 based on the mouse distance
+    const volumeMultiplier = 1.5; // Adjust if needed
+    backAudio.volume = Math.min(1, Math.pow(intensity, 3) * volumeMultiplier);
+};
+
+// Attach the event listener
+document.addEventListener('mousemove', mouseMoveListener);
+
 
 /* New Page */
 document.querySelector(".signup-form h2").addEventListener("click", function () {
