@@ -391,37 +391,49 @@ playButtonPage2.addEventListener("click", function () {
     canvas.height = Math.max(document.body.scrollHeight, window.innerHeight); // Ensures the canvas covers everything
 
     document.body.appendChild(canvas);
-
     const ctx = canvas.getContext("2d");
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
 
-    // Function to draw the visualizer
+
     function draw() {
         requestAnimationFrame(draw);
+    
+        // Get time domain data for drawing the waveform
         analyser.getByteTimeDomainData(dataArray);
+    
+        // Clear the canvas
         ctx.fillStyle = "black";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+        // Draw the waveform
         ctx.lineWidth = 2;
         ctx.strokeStyle = "red";
         ctx.beginPath();
-        const sliceWidth = (canvas.width * 1.0) / bufferLength;
+    
+        const sliceWidth = canvas.width / bufferLength; // Calculate width of each segment based on the buffer length
         let x = 0;
+    
         for (let i = 0; i < bufferLength; i++) {
-            const v = dataArray[i] / 128.0;
-            const y = (v * canvas.height) / 2;
+            const v = dataArray[i] / 128.0; // Normalize the data value
+            const y = (v * canvas.height) / 2; // Scale the Y value to fit the canvas height
+    
             if (i === 0) {
                 ctx.moveTo(x, y);
             } else {
                 ctx.lineTo(x, y);
             }
-            x += sliceWidth;
+    
+            x += sliceWidth; // Increment X based on slice width to spread the segments evenly across the canvas
         }
-        ctx.lineTo(canvas.width, canvas.height / 2);
+    
+        ctx.lineTo(canvas.width, canvas.height / 2); // Complete the path
         ctx.stroke();
     }
+    
+    // Start drawing the visualizer
+    draw();
 
-    draw(); // Start drawing the visualizer
 
     // Part 1: Ensure backAudio continues playing on Page 2 if it wasn't already playing
     if (backAudio.paused) {
