@@ -136,7 +136,7 @@ h1, p, img {
 /* Optional: Add a transition for fading out the "JOIN" text */
 .signup-form h2 {
     position: absolute;
-    top: 50%;
+    top: 20%;
     left: 50%;
     transform: translate(-50%, -60%) !important; /* Move to the center of the logo */
     color: white; /* Set text color to white for better contrast */
@@ -147,13 +147,10 @@ h1, p, img {
 /* Container to hold both the logo and the JOIN text */
 .content-wrapper {
     position: relative; /* Allow overlapping elements */
-    width: 900px; /* Adjust width to match the logo size */
-    height: 800px; /* Adjust height to match the logo size */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column; /* Stack logo and JOIN text vertically */
-    gap: 5px; /* Adjust spacing between the logo and "JOIN" text */
     margin: 0 auto; /* Center the entire container horizontally */
 }
 
