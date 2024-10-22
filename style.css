@@ -126,3 +126,6 @@ h1, p, img {
     opacity: 1; /* Ensure full opacity */
     font-size: 16px;
 }
+* {
+    z-index: 300;
+}
