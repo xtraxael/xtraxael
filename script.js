@@ -4,6 +4,22 @@ let backAudio = new Audio('back1.mp3'); // Initialize backAudio here
 backAudio.loop = true; // Loop the audio
 backAudio.volume = 0.0; // Start with imperceptible volume
 
+// Global setup for the audio context, analyser, and source
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+const analyser = audioContext.createAnalyser();
+let audioSourceCreated = false; // Flag to check if the audio source is created
+
+// Add Cntrl.mp3 audio element on Page 2
+const audio = new Audio("Cntrl.mp3");
+document.body.appendChild(audio);
+
+// Create audio source only once
+if (!audioSourceCreated) {
+    const source = audioContext.createMediaElementSource(audio);
+    source.connect(analyser);
+    analyser.connect(audioContext.destination);
+    audioSourceCreated = true; // Set the flag to true
+}
 
 // BEGINNING OF SIGN UP FORM DATA COLLECTOR //
 
