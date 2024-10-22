@@ -29,6 +29,23 @@ html, body {
     margin-right: 10px;
 }
 
+/* Styling for the JOIN button */
+#signup-button {
+    width: 200px; /* Set a fixed width */
+    padding: 10px 20px; /* Add padding for better appearance */
+    font-size: 16px; /* Increase font size */
+    background-color: #4CAF50; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Change cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Optional: Change background color on hover */
+#signup-button:hover {
+    background-color: #45a049;
+}
 
 
 
