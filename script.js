@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
         await fetchIPAndLocation();
     
         console.log('User Data:', userData);
-        alert('Signup successful! Check the console for your submitted data.');
+        alert('Signup Successful!');
     
         signupForm.innerHTML = '<input type="button" id="signup-button" value="JOIN">';
         signupButton = document.getElementById('signup-button');
